@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\xperis-code\\C#\\RPGHeroes\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
+      "projectUniqueName": "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
       "projectName": "RPGHeroes",
-      "projectPath": "C:\\xperis-code\\C#\\RPGHeroes\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
+      "projectPath": "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
       "packagesPath": "C:\\Users\\Thoost\\.nuget\\packages\\",
-      "outputPath": "C:\\xperis-code\\C#\\RPGHeroes\\RPGHeroes\\RPGHeroes\\obj\\",
+      "outputPath": "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

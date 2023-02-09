@@ -11,7 +11,7 @@ namespace RPGHeroes
         private string _heroName;
         private bool _isDead = false;
         private int _level = 1;
-        private ArmorType _allowedArmorType;
+        private List<ArmorType> _allowedArmorType = new List<ArmorType>();
         // Fields: Attributes
         protected int _baseStrength = 0;
         protected int _baseDexterity = 0;
@@ -41,7 +41,7 @@ namespace RPGHeroes
         public int Level { get => _level;}
         public string HeroName { get => _heroName;}
 
-        public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, ArmorType allowedArmorType)
+        public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType)
         {
             _heroName = heroName;
             _baseStrength = baseStrength;
@@ -60,7 +60,7 @@ namespace RPGHeroes
         }
         public virtual void EquipArmor(Armor armor)
         {
-            if (armor.ArmorType != _allowedArmorType)
+            if (!_allowedArmorType.Contains(armor.ArmorType))
             {
                 Console.WriteLine("I can't Equip That item!");
             }
@@ -126,11 +126,11 @@ namespace RPGHeroes
                 _intelligence += weapon.Intelligence;
                 _damage += weapon.Damage;
             }
-            Console.WriteLine("str:"+ _strength);
-            Console.WriteLine("dex:"+ _dexterity);
-            Console.WriteLine("int:"+ _intelligence);
-            Console.WriteLine("dmg:"+ _damage);
-            Console.WriteLine("def:"+ _defense);
+            //Console.WriteLine("str:"+ _strength);
+            //Console.WriteLine("dex:"+ _dexterity);
+            //Console.WriteLine("int:"+ _intelligence);
+            //Console.WriteLine("dmg:"+ _damage);
+            //Console.WriteLine("def:"+ _defense);
         }
        
         private List<Armor> ArmorSlots()

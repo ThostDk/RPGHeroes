@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes.Heroes
 {
-    public class Ranger : Hero
+    public class Rogue : Hero
     {
-        public Ranger(string heroName) : base(heroName, 1, 7, 1, new List<ArmorType> { ArmorType.leather, ArmorType.mail })
+        public Rogue(string heroName) : base(heroName, 1, 7, 1, new List<ArmorType> { ArmorType.leather, ArmorType.mail })
         {
             
         }

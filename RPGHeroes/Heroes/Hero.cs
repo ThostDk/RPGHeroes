@@ -141,7 +141,6 @@ namespace RPGHeroes
             if (pants != null){ armors.Add(pants);}
             if (gloves != null){ armors.Add(gloves);}
             if (boots != null){ armors.Add(boots);}
-            Console.WriteLine("ArmorSlots: " + armors.Count);
             return armors;
         }
         public abstract List<Weapon> WeaponSlots();

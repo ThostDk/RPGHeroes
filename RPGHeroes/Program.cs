@@ -12,10 +12,20 @@ namespace RPGHeroes
             
             ArmorFactory armorFactory = new ArmorFactory();
             WeaponFactory weaponFactory = new WeaponFactory();
+            List<Equipment> tmpEquipment = new List<Equipment>();
             List<Armor> armors = new List<Armor>();
             List<Weapon> weapons = new List<Weapon>();
-            weapons = weaponFactory.CreateEquipment();
-            armors = armorFactory.CreateEquipment();
+            tmpEquipment = armorFactory.CreateEquipment();
+            foreach (Equipment e in tmpEquipment)
+            {
+                armors.Add((Armor)e);
+            }
+            tmpEquipment = weaponFactory.CreateEquipment();
+            foreach (Equipment e in tmpEquipment)
+            {
+                weapons.Add((Weapon)e);
+            }
+            
             //Spawning Brave Heroes
             Mage gandalf = new Mage("Gandalf");
             

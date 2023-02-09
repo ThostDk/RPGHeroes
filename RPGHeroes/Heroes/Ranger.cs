@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes.Heroes
 {
-    public class Mage : Hero
+    public class Ranger : Hero
     {
-        public Mage(string heroName) : base(heroName, 1, 1, 8, new List<ArmorType>{ ArmorType.cloth})
+        public Ranger(string heroName) : base(heroName, 1, 7, 1, new List<ArmorType> { ArmorType.cloth, ArmorType.leather })
         {
             
         }
@@ -25,7 +25,7 @@ namespace RPGHeroes.Heroes
         {
             if (_mana > 0)
             {
-                _health -= CastMagicBarrier(damage);
+                _health -= Evade(damage);
                 if (_health <= 0) { IsDead = true; }
             }
             else
@@ -34,7 +34,7 @@ namespace RPGHeroes.Heroes
             }
         }
         #region Spells
-        private float CastMagicBarrier(int damage)
+        private float Evade(int damage)
         {
             float output = 0;
             if (_mana > 0)
@@ -76,7 +76,7 @@ namespace RPGHeroes.Heroes
         }
         public void LevelUp()
         {
-            base.LevelUpAttributes(1, 1, 5);
+            base.LevelUpAttributes(1, 5, 1);
         }
 
     }

@@ -22,7 +22,7 @@ namespace RPGHeroes
         // Fields: Stats
         protected float _health = 0;
         protected float _mana = 0;
-        protected int _damage = 0;
+        protected float _damage = 0;
         protected int _defense = 0;
 
         protected List<Weapon> weapons = new List<Weapon>();
@@ -52,7 +52,7 @@ namespace RPGHeroes
 
 
         }
-        public abstract int Attack();
+        public abstract float Attack();
         public virtual void TakeDamage(int damage)
         {
             _health -= damage - (_defense / 2);
@@ -93,12 +93,12 @@ namespace RPGHeroes
 
         private void SetStatsFromAttributes()
         {
-            AddStatsFromEquipment(weapons);
-            AddStatsFromEquipment(armors);
+            AddStatsFromEquipment();
             _health = (_baseStrength + _strength) * 5;
             _mana = (_baseIntelligence + _intelligence) * 5;
             _damage = (_baseStrength + _strength * 2) + (_baseDexterity + _dexterity * 2);
             _defense = (_baseDexterity + _dexterity) * 5;
+
             for (int weapon = 0; weapon < weapons.Count; weapon++)
             {
                 _damage += weapons[weapon].Damage;
@@ -109,41 +109,44 @@ namespace RPGHeroes
             }
             
         }
-        private void AddStatsFromEquipment(List<Armor> armors)
+        private void AddStatsFromEquipment()
         {
+            _strength = _baseStrength; _dexterity = _baseDexterity; _intelligence = _baseIntelligence; _defense = 0;
             foreach (Armor armor in armors)
             {
-                _strength = _baseStrength + armor.Strength;
-                _dexterity = _baseDexterity + armor.Dexterity;
-                _intelligence = _baseIntelligence + armor.Intelligence;
+                _strength += armor.Strength;
+                _dexterity += armor.Dexterity;
+                _intelligence +=armor.Intelligence;
                 _defense += armor.Defense;
             }
-        }
-        private void AddStatsFromEquipment(List<Weapon> weapons)
-        {
             foreach (Weapon weapon in weapons)
             {
-                _strength = _baseStrength + weapon.Strength;
-                _dexterity = _baseDexterity + weapon.Dexterity;
-                _intelligence = _baseIntelligence + weapon.Intelligence;
+                _strength += weapon.Strength;
+                _dexterity += weapon.Dexterity;
+                _intelligence += weapon.Intelligence;
                 _damage += weapon.Damage;
             }
+            Console.WriteLine("str:"+ _strength);
+            Console.WriteLine("dex:"+ _dexterity);
+            Console.WriteLine("int:"+ _intelligence);
+            Console.WriteLine("dmg:"+ _damage);
+            Console.WriteLine("def:"+ _defense);
         }
+       
         private List<Armor> ArmorSlots()
         {
-            List<Armor> armor = new List<Armor>
-            {
-                helmet,
-                bodyArmor,
-                pants,
-                gloves,
-                boots
-            };
-            return armor;
+            armors = new List<Armor>() { };
+            if (helmet != null){ armors.Add(helmet);}
+            if (bodyArmor != null){ armors.Add(bodyArmor);}
+            if (pants != null){ armors.Add(pants);}
+            if (gloves != null){ armors.Add(gloves);}
+            if (boots != null){ armors.Add(boots);}
+            Console.WriteLine("ArmorSlots: " + armors.Count);
+            return armors;
         }
         public abstract List<Weapon> WeaponSlots();
 
-        public virtual void LevelUp(int strengthIncrease, int agilityIncrease, int intelligenceIncrease)
+        protected void LevelUpAttributes(int strengthIncrease, int agilityIncrease, int intelligenceIncrease)
         {
             _level += 1;
             _baseStrength += strengthIncrease;
@@ -158,8 +161,10 @@ namespace RPGHeroes
             Console.WriteLine($"Strength:----|{_strength}");
             Console.WriteLine($"Agility:-----|{_dexterity}");
             Console.WriteLine($"Intelligence:|{_intelligence}");
-            Console.WriteLine($"Health:|{_health}");
-            Console.WriteLine($"Mana:|{_mana}");
+            Console.WriteLine($"Health:------|{_health}");
+            Console.WriteLine($"Mana:--------|{_mana}");
+            Console.WriteLine($"Damage:------|{_damage}");
+            Console.WriteLine($"Defense:-----|{_defense}");
             Console.WriteLine( "*--------------------------------------------------*");
         }
         public void DisplayItems()

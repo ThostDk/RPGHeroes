@@ -9,12 +9,18 @@ namespace RPGHeroes
     public class ArmorFactory
     {
         public List<Armor> CreateEquipment()
-        {// | ArmorSlot | ArmorType | Name | LevelReq | Defense | Intelligence | Dexterity | Strength |
+        {// | ArmorSlot | ArmorType | Name | LevelReq | Defense | Intelligence | Strength | Dexterity |
             List<Armor> armor = new List<Armor>(){
+            new Armor(ArmorSlot.helmet,ArmorType.plate,"Bucket",1 , 5, 0, 0, -2),
+            new Armor(ArmorSlot.bodyArmor,ArmorType.plate,"PlateKini",1 , 0, 5, 4, 10),
+            new Armor(ArmorSlot.gloves,ArmorType.plate,"Rusty Gauntlet",1 , 2, 0, 3, 0),
+            new Armor(ArmorSlot.pants,ArmorType.plate,"Plated Shorts",1 , 4, 0, 2, 3),
+            new Armor(ArmorSlot.boots,ArmorType.plate,"Plated Boots",1 , 2, 0, 1, 1),
+
             new Armor(ArmorSlot.helmet,ArmorType.mail,"Bucket",1 , 5, 0, 0, -2),
             new Armor(ArmorSlot.bodyArmor,ArmorType.mail,"PlateKini",1 , 0, 5, 4, 10),
             new Armor(ArmorSlot.gloves,ArmorType.mail,"Rusty Gauntlet",1 , 2, 0, 3, 0),
-            new Armor(ArmorSlot.pants,ArmorType.mail,"Chainmail Shorts",1 , 4, 0, 2, 3),
+            new Armor(ArmorSlot.pants,ArmorType.mail,"Plated Shorts",1 , 4, 0, 2, 3),
             new Armor(ArmorSlot.boots,ArmorType.mail,"Plated Boots",1 , 2, 0, 1, 1),
 
             new Armor(ArmorSlot.helmet, ArmorType.leather,"Leather Cap",1 , 2, 1, 0, 3),

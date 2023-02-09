@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\RPGHeroes",
+    "\\RPGHeroes\\Equipment",
+    "\\RPGHeroes\\Equipment\\Enum",
+    "\\RPGHeroes\\Equipment\\EquipmentFactory",
+    "\\RPGHeroes\\Heroes"
+  ],
+  "SelectedNode": "\\RPGHeroes\\RPGHeroes.csproj",
+  "PreviewInSolutionExplorer": false
+}

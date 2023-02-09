@@ -18,13 +18,14 @@ namespace RPGHeroes
             armors = armorFactory.CreateEquipment();
             //Spawning Brave Heroes
             Mage gandalf = new Mage("Gandalf");
+            
             gandalf.DisplayStats();
             gandalf.EquipArmor(armors[1]);
-            gandalf.EquipArmor(armors[10]);
-            gandalf.EquipArmor(armors[11]);
-            gandalf.EquipArmor(armors[12]);
-            gandalf.EquipArmor(armors[13]);
-            gandalf.EquipArmor(armors[14]);
+            gandalf.EquipArmor(armors[15]);
+            gandalf.EquipArmor(armors[16]);
+            gandalf.EquipArmor(armors[17]);
+            gandalf.EquipArmor(armors[18]);
+            gandalf.EquipArmor(armors[19]);
             gandalf.DisplayItems();
             gandalf.DisplayStats();
             Console.ReadLine();

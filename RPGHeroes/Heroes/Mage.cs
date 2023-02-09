@@ -12,7 +12,7 @@ namespace RPGHeroes.Heroes
         {
             
         }
-        public override int Attack()
+        public override float Attack()
         {
             if (_mana > 10*Level)
             {
@@ -49,11 +49,11 @@ namespace RPGHeroes.Heroes
             }
             return output;
         }
-        private int CastFireball()
+        private float CastFireball()
         {
             Console.WriteLine($"|Casting fireball| Raw damage: {_intelligence * 2} ");
             _mana -= 10 * Level;
-            return _intelligence * 2;
+            return _intelligence * 1.5f;
         }
         #endregion
         
@@ -74,10 +74,9 @@ namespace RPGHeroes.Heroes
                 return new List<Weapon>() { offHand };
             }
         }
-        public override void LevelUp(int strengthIncrease, int agilityIncrease, int intelligenceIncrease)
+        public void LevelUp()
         {
-            base.LevelUp(strengthIncrease, agilityIncrease, intelligenceIncrease);
-
+            base.LevelUpAttributes(1, 1, 1);
         }
 
     }

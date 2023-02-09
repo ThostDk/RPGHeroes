@@ -11,7 +11,7 @@ namespace RPGHeroes
     {
         private ArmorType _armorType;
         private ArmorSlot _armorSlot;
-        public Armor(ArmorSlot armorSlot, ArmorType armorType, string name, int levelRequirement, int defense, int intelligence, int strength, int agility)
+        public Armor(ArmorSlot armorSlot, ArmorType armorType, string name, int levelRequirement, int defense, int intelligence, int strength, int dexterity)
         {
             _armorSlot = armorSlot;
             _armorType = armorType;
@@ -20,7 +20,7 @@ namespace RPGHeroes
             _defense = defense;
             _intelligence = intelligence;
             _strength = strength;
-            _dexterity = agility;
+            _dexterity = dexterity;
         }
 
         public ArmorType ArmorType { get => _armorType;}

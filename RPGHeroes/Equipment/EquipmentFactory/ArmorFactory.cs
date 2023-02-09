@@ -17,11 +17,11 @@ namespace RPGHeroes
             new Armor(ArmorSlot.pants,ArmorType.plate,"Plated Shorts",1 , 4, 0, 2, 3),
             new Armor(ArmorSlot.boots,ArmorType.plate,"Plated Boots",1 , 2, 0, 1, 1),
 
-            new Armor(ArmorSlot.helmet,ArmorType.mail,"Bucket",1 , 5, 0, 0, -2),
-            new Armor(ArmorSlot.bodyArmor,ArmorType.mail,"PlateKini",1 , 0, 5, 4, 10),
-            new Armor(ArmorSlot.gloves,ArmorType.mail,"Rusty Gauntlet",1 , 2, 0, 3, 0),
-            new Armor(ArmorSlot.pants,ArmorType.mail,"Plated Shorts",1 , 4, 0, 2, 3),
-            new Armor(ArmorSlot.boots,ArmorType.mail,"Plated Boots",1 , 2, 0, 1, 1),
+            new Armor(ArmorSlot.helmet,ArmorType.mail,"chainmail coif",1 , 5, 0, 0, -2),
+            new Armor(ArmorSlot.bodyArmor,ArmorType.mail,"Lamellar body armor",1 , 0, 5, 4, 10),
+            new Armor(ArmorSlot.gloves,ArmorType.mail,"chainmail gloves",1 , 2, 0, 3, 0),
+            new Armor(ArmorSlot.pants,ArmorType.mail,"Chainmail Speedos",1 , 4, 0, 2, 3),
+            new Armor(ArmorSlot.boots,ArmorType.mail,"Reinforced chain Boots",1 , 2, 0, 1, 1),
 
             new Armor(ArmorSlot.helmet, ArmorType.leather,"Leather Cap",1 , 2, 1, 0, 3),
             new Armor(ArmorSlot.bodyArmor, ArmorType.leather,"Brigandine",1 , 4, 1, 2, 3),

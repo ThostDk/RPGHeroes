@@ -28,7 +28,22 @@ namespace RPGHeroes
             
             //Spawning Brave Heroes
             Mage gandalf = new Mage("Gandalf");
-            
+            Ranger legolas = new Ranger("Legolas");
+
+            //should not be able to
+            legolas.EquipArmor(armors[0]);
+            legolas.EquipArmor(armors[15]);
+
+            legolas.EquipArmor(armors[5]);
+            legolas.EquipArmor(armors[11]);
+            legolas.EquipArmor(armors[12]);
+            legolas.EquipArmor(armors[8]);
+            legolas.EquipArmor(armors[9]);
+            legolas.DisplayItems();
+            legolas.DisplayStats();
+            Console.WriteLine("========================================================");
+            Console.WriteLine("#####################|NEXT HERO|########################");
+            Console.WriteLine("========================================================");
             gandalf.DisplayStats();
             gandalf.EquipArmor(armors[1]);
             gandalf.EquipArmor(armors[15]);

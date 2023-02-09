@@ -29,13 +29,13 @@ namespace RPGHeroes
         protected List<Weapon> weapons = new List<Weapon>();
         protected List<Armor> armors = new List<Armor>();
         // Armor
-        Dictionary<ArmorSlot,Armor> armorEquipped = new Dictionary<ArmorSlot, Armor>() 
+        Dictionary<ArmorSlot, Armor> armorEquipped = new Dictionary<ArmorSlot, Armor>()
         {
-            {ArmorSlot.helmet,null}, 
-            {ArmorSlot.bodyArmor,null}, 
-            {ArmorSlot.pants,null}, 
-            {ArmorSlot.gloves,null}, 
-            {ArmorSlot.boots,null}, 
+            {ArmorSlot.helmet,null},
+            {ArmorSlot.bodyArmor,null},
+            {ArmorSlot.pants,null},
+            {ArmorSlot.gloves,null},
+            {ArmorSlot.boots,null},
         };
         // Weapons
         Dictionary<WeaponHand, Weapon> weaponEquipped = new Dictionary<WeaponHand, Weapon>()
@@ -76,8 +76,8 @@ namespace RPGHeroes
         }
 
         public bool IsDead { get => _isDead; set => _isDead = value; }
-        public int Level { get => _level;}
-        public string HeroName { get => _heroName;}
+        public int Level { get => _level; }
+        public string HeroName { get => _heroName; }
 
         public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType, List<WeaponType> allowedWeaponType)
         {
@@ -150,28 +150,31 @@ namespace RPGHeroes
             {
                 _defense += armors[armor].Defense;
             }
-            
+
         }
         private void AddStatsFromEquipment()
         {
             _strength = _baseStrength; _dexterity = _baseDexterity; _intelligence = _baseIntelligence; _defense = 0;
             foreach (Armor armor in armorEquipped.Values)
             {
-                if(armor != null) 
+                if (armor != null)
                 {
                     _strength += armor.Strength;
                     _dexterity += armor.Dexterity;
                     _intelligence += armor.Intelligence;
                     _defense += armor.Defense;
                 }
-                
+
             }
-            foreach (Weapon weapon in weapons)
+            foreach (Weapon weapon in weaponEquipped.Values)
             {
-                _strength += weapon.Strength;
-                _dexterity += weapon.Dexterity;
-                _intelligence += weapon.Intelligence;
-                _damage += weapon.Damage;
+                if (weapon != null)
+                {
+                    _strength += weapon.Strength;
+                    _dexterity += weapon.Dexterity;
+                    _intelligence += weapon.Intelligence;
+                    _damage += weapon.Damage;
+                }
             }
         }
 
@@ -185,8 +188,8 @@ namespace RPGHeroes
 
         public void DisplayStats()
         {
-            Console.WriteLine( "*--------------------------------------------------*");
-            Console.WriteLine($"{ _heroName}'s stats & attributes are as follows:");
+            Console.WriteLine("*--------------------------------------------------*");
+            Console.WriteLine($"{_heroName}'s stats & attributes are as follows:");
             Console.WriteLine($"Strength:----|{_strength}");
             Console.WriteLine($"Agility:-----|{_dexterity}");
             Console.WriteLine($"Intelligence:|{_intelligence}");
@@ -194,7 +197,7 @@ namespace RPGHeroes
             Console.WriteLine($"Mana:--------|{_mana}");
             Console.WriteLine($"Damage:------|{_damage}");
             Console.WriteLine($"Defense:-----|{_defense}");
-            Console.WriteLine( "*--------------------------------------------------*");
+            Console.WriteLine("*--------------------------------------------------*");
         }
         public void DisplayItems()
         {
@@ -211,7 +214,7 @@ namespace RPGHeroes
 
         // Method that returns the item name if the item spot is filled  
         private string DisplayArmorItem(Equipment item)
-        {   
+        {
             if (item != null)
             {
                 return item.Name;
@@ -227,7 +230,7 @@ namespace RPGHeroes
             {
                 Console.WriteLine($"Both Hands:|{weaponEquipped[WeaponHand.both].Name}");
             }
-            if(weaponEquipped[WeaponHand.mainHand] != null)
+            if (weaponEquipped[WeaponHand.mainHand] != null)
             {
                 Console.WriteLine($"Main Hand:-|{weaponEquipped[WeaponHand.mainHand].Name}");
             }

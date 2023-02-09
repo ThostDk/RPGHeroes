@@ -8,12 +8,12 @@ namespace RPGHeroes
 {
     public class Weapon : Equipment
     {
-        WeaponType _weaponType;
-        private bool _isTwoHand;
-        public Weapon(WeaponType weaponType, bool twohand, string name, int levelRequirement,int damage, int intelligence, int strength, int dexterity)
+        private WeaponType _weaponType;
+        private WeaponHand _weaponHand;
+        public Weapon(WeaponType weaponType, WeaponHand weaponHand, string name, int levelRequirement,int damage, int intelligence, int strength, int dexterity)
         {
             _weaponType = weaponType;
-            _isTwoHand = twohand;
+            _weaponHand = weaponHand;
             _name = name;
             _levelRequirement = levelRequirement;
             _damage = damage;
@@ -22,6 +22,7 @@ namespace RPGHeroes
             _dexterity = dexterity;
         }
 
-        public bool IsTwoHand { get => _isTwoHand;}
+        public WeaponType WeaponType { get => _weaponType;}
+        public WeaponHand WeaponHand { get => _weaponHand;}
     }
 }

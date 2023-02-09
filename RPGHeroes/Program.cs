@@ -51,6 +51,7 @@ namespace RPGHeroes
             gandalf.EquipArmor(armors[17]);
             gandalf.EquipArmor(armors[18]);
             gandalf.EquipArmor(armors[19]);
+            gandalf.EquipWeapon(weapons[0]);
             gandalf.DisplayItems();
             gandalf.DisplayStats();
             Console.ReadLine();

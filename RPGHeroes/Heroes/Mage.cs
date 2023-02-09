@@ -8,18 +8,20 @@ namespace RPGHeroes.Heroes
 {
     public class Mage : Hero
     {
-        public Mage(string heroName) : base(heroName, 1, 1, 8, new List<ArmorType>{ ArmorType.cloth})
+        public Mage(string heroName) : base(heroName, 1, 1, 8, new List<ArmorType>{ ArmorType.cloth}, new List<WeaponType> { WeaponType.wand, WeaponType.staff})
         {
             
         }
-        public override float Attack()
+        public override float Attack(Hero target)
         {
-            if (_mana > 10*Level)
+            if (_mana > 10 * Level)
             {
                 return CastFireball();
             }
-            Console.WriteLine($"|hitting with {WeaponSlots()}| Raw damage: {_intelligence * 2} ");
-            return _damage;
+            else
+            {
+                return base.Attack(target);
+            }
         }
         public override void TakeDamage(int damage)
         {
@@ -59,21 +61,7 @@ namespace RPGHeroes.Heroes
         
         // just add equipment to a list and check for viable items?
         // maybe make method called EquipItem(Equipment item) that checks for existing equipment and viability?
-        public override List<Weapon> WeaponSlots()
-        {
-            if (mainHand.IsTwoHand)
-            {
-                return new List<Weapon>() { mainHand };
-            }
-            else if (!mainHand.IsTwoHand && !offHand.IsTwoHand)
-            {
-                return new List<Weapon>() { mainHand, offHand };
-            }
-            else
-            {
-                return new List<Weapon>() { offHand };
-            }
-        }
+        
         public void LevelUp()
         {
             base.LevelUpAttributes(1, 1, 5);

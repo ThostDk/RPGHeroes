@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    public enum ArmorSlot
+    public enum WeaponHand
     {
-        helmet,
-        bodyArmor,
-        gloves,
-        pants,
-        boots,
-
+        mainHand,
+        offHand,
+        both
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    public class WeaponFactory
+    public class WeaponFactory : EquipmentFactory
     {
-        public List<Weapon> CreateEquipment()
+        public override List<Equipment> CreateEquipment()
         {// | WeaponType | Is2Hand? | Name | LevelReq | Damage | Intelligence | Strength | Dexterity |
-            List<Weapon> weapons = new List<Weapon>(){
+            List<Equipment> weapons = new List<Equipment>(){
             new Weapon(WeaponType.staff,true,"Old Broom", 1, 3, 0, 4, 4),
             new Weapon(WeaponType.staff,true,"Wabbajack",3, 8, 13, 6, 4),
             new Weapon(WeaponType.wand,true,"Magic Wand",2, 1, 0, 0, 20),

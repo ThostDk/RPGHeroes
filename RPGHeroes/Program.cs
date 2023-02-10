@@ -35,6 +35,8 @@ namespace RPGHeroes
             legolas.EquipArmor(armors[15]);
 
             legolas.EquipArmor(armors[5]);
+            legolas.DisplayItems();
+            legolas.DisplayStats();
             legolas.EquipArmor(armors[11]);
             legolas.EquipArmor(armors[12]);
             legolas.EquipArmor(armors[8]);

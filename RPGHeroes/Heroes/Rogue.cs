@@ -14,7 +14,7 @@ namespace RPGHeroes.Heroes
         }
         public override float Attack(Hero target)
         {
-            if (_mana > 10 * Level)
+            if (heroAttributes.Mana > 10 * Level)
             {
                 return CastFireball();
             }
@@ -25,10 +25,10 @@ namespace RPGHeroes.Heroes
         }
         public override void TakeDamage(int damage)
         {
-            if (_mana > 0)
+            if (heroAttributes.Mana > 0)
             {
-                _health -= Evade(damage);
-                if (_health <= 0) { IsDead = true; }
+                heroAttributes.Health -= Evade(damage);
+                if (heroAttributes.Health <= 0) { IsDead = true; }
             }
             else
             {
@@ -39,27 +39,27 @@ namespace RPGHeroes.Heroes
         private float Evade(int damage)
         {
             float output = 0;
-            if (_mana > 0)
+            if (heroAttributes.Mana > 0)
             {
-                output = (damage - 10* Level);
-                _mana -= 10* Level;
+                output = (damage - 10 * Level);
+                heroAttributes.Mana -= 10 * Level;
             }
             else
             {
-                output = (damage - _mana);
-                _mana = 0;
+                output = (damage - heroAttributes.Mana);
+                heroAttributes.Mana = 0;
             }
             return output;
         }
         private float CastFireball()
         {
-            Console.WriteLine($"|Casting fireball| Raw damage: {_intelligence * 2} ");
-            _mana -= 10 * Level;
-            return _intelligence * 1.5f;
+            Console.WriteLine($"|Casting fireball| Raw damage: {heroAttributes.Intelligence * 2} ");
+            heroAttributes.Mana -= 10 * Level;
+            return heroAttributes.Intelligence * 1.5f;
         }
         #endregion
-        
-        
+
+
         public void LevelUp()
         {
             base.LevelUpAttributes(1, 4, 1);

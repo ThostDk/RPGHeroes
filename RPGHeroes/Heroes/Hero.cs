@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGHeroes.Heroes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,19 +14,9 @@ namespace RPGHeroes
         private int _level = 1;
         private List<ArmorType> _allowedArmorType = new List<ArmorType>();
         private List<WeaponType> _allowedWeaponType = new List<WeaponType>();
-        // Fields: Attributes
-        protected int _baseStrength = 0;
-        protected int _baseDexterity = 0;
-        protected int _baseIntelligence = 0;
-        protected int _strength = 0;
-        protected int _dexterity = 0;
-        protected int _intelligence = 0;
-        // Fields: Stats
-        protected float _health = 0;
-        protected float _mana = 0;
-        protected float _damage = 0;
-        protected int _defense = 0;
-
+        protected HeroAttributes heroAttributes = new HeroAttributes(0, 0, 0);
+        
+        
         protected List<Weapon> weapons = new List<Weapon>();
         protected List<Armor> armors = new List<Armor>();
         // Armor
@@ -45,35 +36,7 @@ namespace RPGHeroes
             {WeaponHand.both,null},
         };
 
-        public virtual void EquipWeapon(Weapon weapon)
-        {
-            if (!_allowedWeaponType.Contains(weapon.WeaponType))
-            {
-                Console.WriteLine("I can't Equip That item!");
-            }
-            else
-            {
-                switch (weapon.WeaponHand)
-                {
-                    case WeaponHand.mainHand:
-                        weaponEquipped[WeaponHand.mainHand] = weapon;
-                        weaponEquipped[WeaponHand.both] = null;
-                        break;
-                    case WeaponHand.offHand:
-                        weaponEquipped[WeaponHand.offHand] = weapon;
-                        weaponEquipped[WeaponHand.both] = null;
-                        break;
-                    case WeaponHand.both:
-                        weaponEquipped[WeaponHand.both] = weapon;
-                        weaponEquipped[WeaponHand.offHand] = null;
-                        weaponEquipped[WeaponHand.mainHand] = null;
-                        break;
-                    default:
-                        break;
-                }
-                SetStatsFromAttributes();
-            }
-        }
+        
 
         public bool IsDead { get => _isDead; set => _isDead = value; }
         public int Level { get => _level; }
@@ -82,24 +45,25 @@ namespace RPGHeroes
         public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType, List<WeaponType> allowedWeaponType)
         {
             _heroName = heroName;
-            _baseStrength = baseStrength;
-            _baseDexterity = baseDexterity;
-            _baseIntelligence = baseIntelligence;
+            heroAttributes.BaseStrength = baseStrength;
+            heroAttributes.BaseDexterity = baseDexterity;
+            heroAttributes.BaseIntelligence = baseIntelligence;
+
             _allowedArmorType = allowedArmorType;
             _allowedWeaponType = allowedWeaponType;
-            SetStatsFromAttributes();
+            heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
 
 
         }
         public virtual float Attack(Hero target)
         {
-            Console.WriteLine($"|Performing basic attack| Raw damage: {_damage} ");
-            return _damage;
+            Console.WriteLine($"|Performing basic attack| Raw damage: {heroAttributes.Damage} ");
+            return heroAttributes.Damage;
         }
         public virtual void TakeDamage(int damage)
         {
-            _health -= damage - (_defense / 2);
-            if (_health <= 0) { IsDead = true; }
+            heroAttributes.Health -= damage - (heroAttributes.Defense / 2);
+            if (heroAttributes.Health <= 0) { IsDead = true; }
         }
         public virtual void EquipArmor(Armor armor)
         {
@@ -129,74 +93,59 @@ namespace RPGHeroes
                     default:
                         break;
                 }
-                //ArmorSlots();
-                SetStatsFromAttributes();
+                heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
+                
             }
         }
-
-        private void SetStatsFromAttributes()
+        public virtual void EquipWeapon(Weapon weapon)
         {
-            AddStatsFromEquipment();
-            _health = (_baseStrength + _strength) * 5;
-            _mana = (_baseIntelligence + _intelligence) * 5;
-            _damage = (_baseStrength + _strength * 2) + (_baseDexterity + _dexterity * 2);
-            _defense = (_baseDexterity + _dexterity) * 5;
-
-            for (int weapon = 0; weapon < weapons.Count; weapon++)
+            if (!_allowedWeaponType.Contains(weapon.WeaponType))
             {
-                _damage += weapons[weapon].Damage;
+                Console.WriteLine("I can't Equip That item!");
             }
-            for (int armor = 0; armor < armors.Count; armor++)
+            else
             {
-                _defense += armors[armor].Defense;
-            }
-
-        }
-        private void AddStatsFromEquipment()
-        {
-            _strength = _baseStrength; _dexterity = _baseDexterity; _intelligence = _baseIntelligence; _defense = 0;
-            foreach (Armor armor in armorEquipped.Values)
-            {
-                if (armor != null)
+                switch (weapon.WeaponHand)
                 {
-                    _strength += armor.Strength;
-                    _dexterity += armor.Dexterity;
-                    _intelligence += armor.Intelligence;
-                    _defense += armor.Defense;
+                    case WeaponHand.mainHand:
+                        weaponEquipped[WeaponHand.mainHand] = weapon;
+                        weaponEquipped[WeaponHand.both] = null;
+                        break;
+                    case WeaponHand.offHand:
+                        weaponEquipped[WeaponHand.offHand] = weapon;
+                        weaponEquipped[WeaponHand.both] = null;
+                        break;
+                    case WeaponHand.both:
+                        weaponEquipped[WeaponHand.both] = weapon;
+                        weaponEquipped[WeaponHand.offHand] = null;
+                        weaponEquipped[WeaponHand.mainHand] = null;
+                        break;
+                    default:
+                        break;
                 }
-
-            }
-            foreach (Weapon weapon in weaponEquipped.Values)
-            {
-                if (weapon != null)
-                {
-                    _strength += weapon.Strength;
-                    _dexterity += weapon.Dexterity;
-                    _intelligence += weapon.Intelligence;
-                    _damage += weapon.Damage;
-                }
+                heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
             }
         }
-
-        protected void LevelUpAttributes(int strengthIncrease, int agilityIncrease, int intelligenceIncrease)
+        
+        protected void LevelUpAttributes(int strengthIncrease, int dexterityIncrease, int intelligenceIncrease)
         {
             _level += 1;
-            _baseStrength += strengthIncrease;
-            _baseDexterity += agilityIncrease;
-            _baseIntelligence += intelligenceIncrease;
+            heroAttributes.BaseStrength += strengthIncrease;
+            heroAttributes.BaseDexterity += dexterityIncrease;
+            heroAttributes.BaseIntelligence += intelligenceIncrease;
         }
-
+        #region Display Stats, Weapons & Armor
         public void DisplayStats()
         {
             Console.WriteLine("*--------------------------------------------------*");
             Console.WriteLine($"{_heroName}'s stats & attributes are as follows:");
-            Console.WriteLine($"Strength:----|{_strength}");
-            Console.WriteLine($"Agility:-----|{_dexterity}");
-            Console.WriteLine($"Intelligence:|{_intelligence}");
-            Console.WriteLine($"Health:------|{_health}");
-            Console.WriteLine($"Mana:--------|{_mana}");
-            Console.WriteLine($"Damage:------|{_damage}");
-            Console.WriteLine($"Defense:-----|{_defense}");
+            Console.WriteLine($"Strength:----|{heroAttributes.Strength}");
+            Console.WriteLine($"Dexterity:-----|{heroAttributes.Dexterity}");
+            Console.WriteLine($"Intelligence:|{heroAttributes.Intelligence}");
+            Console.WriteLine($"Health:------|{heroAttributes.Health}");
+            Console.WriteLine($"Mana:--------|{heroAttributes.Mana}");
+            Console.WriteLine($"Damage:------|{heroAttributes.Damage}");
+            Console.WriteLine($"Defense:-----|{heroAttributes.Defense}");
             Console.WriteLine("*--------------------------------------------------*");
         }
         public void DisplayItems()
@@ -239,5 +188,6 @@ namespace RPGHeroes
                 Console.WriteLine($"Off Hand:--|{weaponEquipped[WeaponHand.offHand].Name}");
             }
         }
+        #endregion
     }
 }

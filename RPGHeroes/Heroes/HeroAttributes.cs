@@ -18,7 +18,7 @@ namespace RPGHeroes.Heroes
         private float _health = 0;
         private float _mana = 0;
         private float _defense = 0;
-        private float _damage = 0;
+        private float _damage = 1;
         public HeroAttributes(int baseStrength, int baseDexterity, int baseIntelligence)
         {
             _baseStrength = baseStrength;
@@ -40,7 +40,7 @@ namespace RPGHeroes.Heroes
 
         public void AddStatsFromEquipment(Dictionary<ArmorSlot, Armor> armorEquipped, Dictionary<WeaponHand, Weapon> weaponEquipped)
         {
-            _strength = _baseStrength; _dexterity = _baseDexterity; _intelligence = _baseIntelligence; _defense = 0;
+            _strength = _baseStrength; _dexterity = _baseDexterity; _intelligence = _baseIntelligence; _defense = 0;  _damage = 1;
             foreach (Armor armor in armorEquipped.Values)
             {
                 if (armor != null)
@@ -62,31 +62,33 @@ namespace RPGHeroes.Heroes
                     _damage += weapon.Damage;
                 }
             }
-            SetStatsFromAttributes(armorEquipped, weaponEquipped);
+            _health = _strength * 10;
+            _mana = _intelligence * 10;
+            _defense += _dexterity * 0.1f;
         }
-        private void SetStatsFromAttributes(Dictionary<ArmorSlot, Armor> armorEquipped, Dictionary<WeaponHand, Weapon> weaponEquipped)
-        {
+        //private void SetStatsFromAttributes(Dictionary<ArmorSlot, Armor> armorEquipped, Dictionary<WeaponHand, Weapon> weaponEquipped)
+        //{
 
-            _health = (_baseStrength + _strength) * 5;
-            _mana = (_baseIntelligence + _intelligence) * 5;
-            _damage = (_baseStrength + _strength * 2) + (_baseDexterity + _dexterity * 2);
-            _defense = (_baseDexterity + _dexterity) * 5;
+        //    _health = (_baseStrength + _strength) * 5;
+        //    _mana = (_baseIntelligence + _intelligence) * 5;
+        //    _damage = (_baseStrength + _strength * 2) + (_baseDexterity + _dexterity * 2);
+        //    _defense = (_baseDexterity + _dexterity) * 5;
             
-            foreach (Weapon weapon in weaponEquipped.Values)
-            {
-                if (weapon != null) 
-                {
-                    _damage += weapon.Damage;
-                }
-            }
-            foreach (Armor armor in armorEquipped.Values)
-            {
-                if (armor != null)
-                {
-                    _defense += armor.Defense;
-                }
-            }
-        }
+        //    foreach (Weapon weapon in weaponEquipped.Values)
+        //    {
+        //        if (weapon != null) 
+        //        {
+        //            _damage += weapon.Damage;
+        //        }
+        //    }
+        //    foreach (Armor armor in armorEquipped.Values)
+        //    {
+        //        if (armor != null)
+        //        {
+        //            _defense += armor.Defense;
+        //        }
+        //    }
+        //}
         
     }
 }

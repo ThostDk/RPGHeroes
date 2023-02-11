@@ -62,7 +62,7 @@ namespace RPGHeroes
         }
         public virtual void TakeDamage(int damage)
         {
-            heroAttributes.Health -= damage - (heroAttributes.Defense / 2);
+            heroAttributes.Health -= CombatHandler.CalculateDamage(damage, heroAttributes.Defense);
             if (heroAttributes.Health <= 0) { IsDead = true; }
         }
         public virtual void EquipArmor(Armor armor)

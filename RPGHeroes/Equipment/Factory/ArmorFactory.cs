@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    public class ArmorFactory : EquipmentFactory
+    public static class ArmorFactory 
     {
-        public override List<Equipment> CreateEquipment()
+        public static List<Armor> CreateEquipment()
         {// | ArmorSlot | ArmorType | Name | LevelReq | Defense | Intelligence | Strength | Dexterity |
-            List<Equipment> armor = new List<Equipment>(){
+            List<Armor> armor = new List<Armor>(){
             new Armor(ArmorSlot.helmet,ArmorType.plate,"Bucket",1 , 5, 0, 0, -2),
             new Armor(ArmorSlot.bodyArmor,ArmorType.plate,"PlateKini",1 , 0, 5, 4, 10),
             new Armor(ArmorSlot.gloves,ArmorType.plate,"Rusty Gauntlet",1 , 2, 0, 3, 0),

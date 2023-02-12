@@ -8,5 +8,10 @@ namespace RPGHeroes.GameplayLoop
 {
     public static class TurnHandler
     {
+
+        public static void CreateCharacter()
+        {
+            Console.WriteLine("Choose a Hero");
+        }
     }
 }

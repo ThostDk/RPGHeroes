@@ -7,7 +7,11 @@ namespace RPGHeroes
     {
         static void Main(string[] args)
         {
-            RenderFrontPage.RenderBackground();
+            //RenderFrontPage.RenderBackground();
+            RenderFrontPage.RenderMage();
+            RenderFrontPage.RenderRogue();
+            RenderFrontPage.RenderBarbarian();
+            RenderFrontPage.RenderRanger();
             //Spawning Items:
             
             

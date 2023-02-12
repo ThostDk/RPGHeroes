@@ -79,7 +79,7 @@ namespace RPGHeroes
         public void EquipItemFromInventory()
         {
             Console.WriteLine("Which item would you like to Equip?");
-            Console.WriteLine("enter the index number you want to equip | enter 'exit' to go back");
+            Console.WriteLine("write the index number you want to equip | write 'exit' to go back");
             string choice = Console.ReadLine();
             int index = 0;
             choice.ToLower();
@@ -97,6 +97,7 @@ namespace RPGHeroes
                 {
                     try
                     {
+                        Console.WriteLine("trying to equip "+ index + " : " +HeroInventoryList[index].Name);
                         EquipItem(HeroInventoryList[index]);
                     }
                     catch (InventoryIndexNotFoundException)
@@ -105,7 +106,7 @@ namespace RPGHeroes
                     }
                 }
             }
-            Console.Clear();
+            
             
         }
         public void EquipItem(Equipment item)
@@ -131,7 +132,12 @@ namespace RPGHeroes
         {
             if (!_allowedArmorType.Contains(armor.ArmorType))
             {
-                Console.WriteLine("I can't Equip That item!");
+                Console.WriteLine($"I can't Equip That armor! the armor is {armor.ArmorType} and i can only wear: ");
+                foreach (ArmorType type in _allowedArmorType)
+                {
+                    Console.Write($"{type}, ");
+                }
+                Console.WriteLine();
             }
             else
             {
@@ -163,7 +169,7 @@ namespace RPGHeroes
         {
             if (!_allowedWeaponType.Contains(weapon.WeaponType))
             {
-                Console.WriteLine("I can't Equip That item!");
+                Console.WriteLine("I can't Equip That weapon!");
             }
             else
             {

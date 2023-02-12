@@ -36,7 +36,7 @@ namespace RPGHeroes
         }
         public void DisplayWeapon(Weapon item)
         {
-            Console.WriteLine("*-----------------------------(|Weapon|)-----------------------------*");
+            Console.WriteLine("                                         |Weapon|                                         ");
             Console.WriteLine($"Weapon name.........: {item.Name}");
             Console.WriteLine($"Weapon Damage.......: {item.Damage}");
             Console.WriteLine($"Weapon Type.........: {item.WeaponType}");
@@ -44,11 +44,11 @@ namespace RPGHeroes
             Console.WriteLine($"Weapon Strength.....: {item.Strength}");
             Console.WriteLine($"Weapon Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Weapon Intelligence.: {item.Intelligence}");
-            Console.WriteLine("*-----------------------------(|Weapon|)-----------------------------*");
+            
         }
         public void DisplayArmor(Armor item)
         {
-            Console.WriteLine("*-----------------------------(|Armor|)-----------------------------*");
+            Console.WriteLine("                                         |Armor|                                          ");
             Console.WriteLine($"Armor name.........: {item.Name}");
             Console.WriteLine($"Armor Defense......: {item.Defense}");
             Console.WriteLine($"Armor Type.........: {item.ArmorType}");
@@ -56,7 +56,7 @@ namespace RPGHeroes
             Console.WriteLine($"Armor Strength.....: {item.Strength}");
             Console.WriteLine($"Armor Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Armor Intelligence.: {item.Intelligence}");
-            Console.WriteLine("*-----------------------------(|Armor|)-----------------------------*");
+            
         }
     }
 }

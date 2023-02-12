@@ -13,34 +13,35 @@ namespace RPGHeroes
     {
         public static Hero SelectHero()
         {
+            RenderAscii.RenderBackground();
             RenderAscii.RenderChooseClass();
-            List<string> HeroChoices = new List<string>() { "mage", "ranger", "barbarian", "rogue"};
+
+            List<string> HeroChoices = new List<string>() { "mage", "ranger", "barbarian", "rogue" };
             string choice = HeroSelectionNavigation(0, HeroChoices);
+
+            Console.WriteLine("Tell us your Hero's Name");
+            string name = Console.ReadLine();
+            switch (choice)
             {
-                
-                Console.WriteLine("Tell us your Hero's Name");
-                string name = Console.ReadLine();
-                switch (choice)
-                {
-                    case "mage":
-                        return new Mage(name);
-                    case "ranger":
-                        return new Mage(name);
-                    case "barbarian":
-                        return new Barbarian(name);
-                    case "rogue":
-                        return new Rogue(name);
-                    default:
-                        throw new ChosenHeroNotFoundException("The selected choice doesn't exist");
-                }
+                case "mage":
+                    return new Mage(name);
+                case "ranger":
+                    return new Ranger(name);
+                case "barbarian":
+                    return new Barbarian(name);
+                case "rogue":
+                    return new Rogue(name);
+                default:
+                    throw new ChosenHeroNotFoundException("The selected choice doesn't exist");
             }
 
         }
         private static string HeroSelectionNavigation(int index, List<string> heroChoices)
         {
-            if(index >= heroChoices.Count) { index = 0; }
-            if(index < 0) { index = heroChoices.Count-1; }
             
+            if (index >= heroChoices.Count) { index = 0; }
+            if (index < 0) { index = heroChoices.Count - 1; }
+
             RenderCurrentClassOption(index);
             ConsoleKeyInfo key;
             key = Console.ReadKey();
@@ -49,25 +50,23 @@ namespace RPGHeroes
             switch (key.Key)
             {
                 case ConsoleKey.Enter:
-                    Console.WriteLine("HELLO!");
                     return heroChoices[index];
-                    
+
                 case ConsoleKey.LeftArrow:
                 case ConsoleKey.UpArrow:
-                    index--;
-                    HeroSelectionNavigation(index, heroChoices);
-                    break;
+                    index-=1;
+                    return HeroSelectionNavigation(index, heroChoices);
+                    
                 case ConsoleKey.RightArrow:
                 case ConsoleKey.DownArrow:
-                    index++;
-                    HeroSelectionNavigation(index, heroChoices);
-                    break;
+                    index += 1;
+                    return HeroSelectionNavigation(index, heroChoices);
+                    
                 default:
-                    HeroSelectionNavigation(index, heroChoices);
-                    break;
+                    return HeroSelectionNavigation(index, heroChoices);
+                    
             }
-            return heroChoices[index];
-            //throw new Exception("How did you even get here?! anyways... you somehow pressed a key that neither activated any case or the default recursion call");
+            throw new Exception("How did you even get here?! anyways... you somehow pressed a key that neither activated any case or the default recursion call");
         }
         private static void RenderCurrentClassOption(int index)
         {

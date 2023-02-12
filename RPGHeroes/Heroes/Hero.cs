@@ -1,4 +1,6 @@
-﻿using RPGHeroes.Heroes;
+﻿using RPGHeroes.Exceptions;
+using RPGHeroes.GameplayLoop;
+using RPGHeroes.Heroes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace RPGHeroes
         private int _level = 1;
 
         private Inventory _inventory = new Inventory();
+        
         private List<ArmorType> _allowedArmorType = new List<ArmorType>();
         private List<WeaponType> _allowedWeaponType = new List<WeaponType>();
         private HeroAttributes _heroAttributes = new HeroAttributes(0, 0, 0);
@@ -40,7 +43,7 @@ namespace RPGHeroes
         public string HeroName { get => _heroName; }
         public HeroAttributes HeroAttributes { get => _heroAttributes; set => _heroAttributes = value; }
         public Inventory Inventory { get => _inventory; set => _inventory = value; }
-
+        public List<Equipment> HeroInventoryList => _inventory.InventoryList;
         public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType, List<WeaponType> allowedWeaponType)
         {
             _heroName = heroName;
@@ -73,9 +76,44 @@ namespace RPGHeroes
             _heroAttributes.CurrentHealth -= CombatHandler.CalculateDamage(damage, _heroAttributes.Defense);
             DeathCheck();
         }
+        public void EquipItemFromInventory()
+        {
+            Console.WriteLine("Which item would you like to Equip?");
+            Console.WriteLine("enter the index number you want to equip | enter 'exit' to go back");
+            string choice = Console.ReadLine();
+            int index = 0;
+            choice.ToLower();
+            if (choice != "exit")
+            {
+                try
+                {
+                    index = Int32.Parse(choice);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Could not parse the input to index number");
+                }
+                finally
+                {
+                    try
+                    {
+                        EquipItem(HeroInventoryList[index]);
+                    }
+                    catch (InventoryIndexNotFoundException)
+                    {
+                        Console.WriteLine("could not find entered index", index);
+                    }
+                }
+            }
+            Console.Clear();
+            
+        }
         public void EquipItem(Equipment item)
         {
-            // exception on null item here
+            if(item == null)
+            {
+                throw new ArgumentNullException("item is null: ", nameof(item));
+            }
             switch (item)
             {
                 case Weapon:

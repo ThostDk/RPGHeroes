@@ -88,6 +88,39 @@ namespace RPGHeroes
             Console.WriteLine("######################|| -> Class: Rogue                           ||######################");
             Console.WriteLine("###########################################################################################");
         }
+        public static void RenderPlayerActionsMenu(List<string> playerActions, int index )
+        {
+            Console.Clear();
+            Console.WriteLine("######################################|Inventory Menu|#####################################");
+            Console.WriteLine("###########################################################################################");
+            for (int i = 0; i < playerActions.Count; i++)
+            {
+                string fillerRight = "||######################";
+                fillerRight = fillerRight.PadLeft(20 - playerActions[i].Count(),'G');
+                if (i == index)
+                {
+                    Console.WriteLine($"######################|| -> {playerActions[i]}{fillerRight}");
+                    
+                }
+                else
+                {
+                    Console.WriteLine($"######################||  {playerActions[i]}  {fillerRight}");
+                }
+            }
+            Console.WriteLine("###########################################################################################");
+
+        }
+        public static void RenderInventoryMenu()
+        {
+            Console.WriteLine("######################################|Inventory Menu|#####################################");
+            Console.WriteLine("###########################################################################################");
+            Console.WriteLine("######################|| Navigate Using Arrows | Select With Enter ||######################");
+            Console.WriteLine("######################||    Class: Mage                            ||######################");
+            Console.WriteLine("######################||    Class: Ranger                          ||######################");
+            Console.WriteLine("######################||    Class: Barbarian                       ||######################");
+            Console.WriteLine("######################|| -> Class: Rogue                           ||######################");
+            Console.WriteLine("###########################################################################################");
+        }
         public static void RenderOther()
         {
             Console.WriteLine

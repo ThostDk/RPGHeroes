@@ -9,22 +9,25 @@ namespace RPGHeroes
 {
     public class Inventory
     {
-        private List<Equipment> _inventory = new List<Equipment>();
+        private List<Equipment> _inventoryList = new List<Equipment>();
+
+        public List<Equipment> InventoryList { get => _inventoryList; set => _inventoryList = value; }
+
         public Inventory() { }
 
-        public void Add(Equipment item) { _inventory.Add(item); }
-        public void DisplayInventory(List<Equipment> inventory)
+        public void Add(Equipment item) { _inventoryList.Add(item); }
+        public void DisplayInventory()
         {
-            for (int i = 0; i < inventory.Count; i++)
+            for (int i = 0; i < _inventoryList.Count; i++)
             {
-                Console.WriteLine($"*-----------------------------(|Slot({i})|)-----------------------------*");
-                switch (inventory[i])
+                Console.WriteLine($"*-----------------------------(|Inventory Slot Index({i})|)-----------------------------*");
+                switch (_inventoryList[i])
                 {
                     case Weapon:
-                        DisplayWeapon((Weapon)inventory[i]);
+                        DisplayWeapon((Weapon)_inventoryList[i]);
                         break;
                     case Armor:
-                        DisplayArmor((Armor)inventory[i]);
+                        DisplayArmor((Armor)_inventoryList[i]);
                         break;
                     default:
                         break;

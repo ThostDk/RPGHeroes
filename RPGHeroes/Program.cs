@@ -1,21 +1,22 @@
 ﻿using RPGHeroes.Heroes;
 using System.Security.Cryptography.X509Certificates;
 
+
 namespace RPGHeroes
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            //RenderFrontPage.RenderBackground();
-            RenderFrontPage.RenderMage();
-            RenderFrontPage.RenderRogue();
-            RenderFrontPage.RenderBarbarian();
-            RenderFrontPage.RenderRanger();
+            // might break on different screens!
+            Console.SetWindowSize(200, 60);
+            
+            RenderAscii.RenderBackground();
+            ClassSelection.SelectHero();
             //Spawning Items:
-            
-            
-            
+
+
+
             List<Armor> armors = new List<Armor>();
             List<Weapon> weapons = new List<Weapon>();
             List<Enemy> enemies = new List<Enemy>();

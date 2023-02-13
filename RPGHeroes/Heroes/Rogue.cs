@@ -8,7 +8,7 @@ namespace RPGHeroes.Heroes
 {
     public class Rogue : Hero
     {
-        public Rogue(string heroName) : base(heroName, 1, 7, 1, new List<ArmorType> { ArmorType.leather, ArmorType.mail }, new List<WeaponType> { WeaponType.dagger, WeaponType.sword })
+        public Rogue(string heroName) : base(heroName, 2, 6, 1, new List<ArmorType> { ArmorType.leather, ArmorType.mail }, new List<WeaponType> { WeaponType.dagger, WeaponType.sword })
         {
             
         }

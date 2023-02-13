@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace RPGHeroes.GameplayLoop
 {
-    public static class PlayerActionsHandler
+    public static class PlayerActionsController
     {
 
 

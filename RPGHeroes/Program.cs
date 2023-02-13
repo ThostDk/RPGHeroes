@@ -33,7 +33,7 @@ namespace RPGHeroes
             {
                 Player.Hero.Inventory.Add(item);
             }
-            PlayerActionsHandler.PlayerActions();
+            PlayerActionsController.PlayerActions();
             
             Console.ReadLine();
         }

@@ -10,7 +10,7 @@ namespace RPGHeroes
     {
         private WeaponType _weaponType;
         private WeaponHand _weaponHand;
-        public Weapon(WeaponType weaponType, WeaponHand weaponHand, string name, int levelRequirement,int damage, int intelligence, int strength, int dexterity) : base(name, levelRequirement, strength, dexterity, intelligence, 100)
+        public Weapon(WeaponType weaponType, WeaponHand weaponHand, string name, int levelRequirement,int damage, int intelligence, int strength, int dexterity)
         {
             _weaponType = weaponType;
             _weaponHand = weaponHand;

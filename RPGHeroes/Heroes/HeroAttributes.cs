@@ -41,6 +41,7 @@ namespace RPGHeroes.Heroes
         public float CurrentMana { get => _currentMana; set => _currentMana = value; }
         public float Defense { get => _defense;}
         public float Damage { get => _damage;}
+        public float MaxMana { get => _maxMana; set => _maxMana = value; }
 
         public void AddStatsFromEquipment(Dictionary<ArmorSlot, Armor> armorEquipped, Dictionary<WeaponHand, Weapon> weaponEquipped)
         {
@@ -66,11 +67,11 @@ namespace RPGHeroes.Heroes
                     _damage += weapon.Damage;
                 }
             }
-            _maxHealth = _strength * 10;
+            _maxHealth = _strength * 20;
             _currentHealth = MaxHealth;
             _maxMana = _intelligence * 10;
             _currentMana = _maxMana;
-            _defense += _dexterity * 0.1f;
+            _defense += _dexterity * 0.2f;
         }
         
     }

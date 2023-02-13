@@ -10,7 +10,7 @@ namespace RPGHeroes
         static void Main(string[] args)
         {
             // might break on different screens!
-            Console.SetWindowSize(200, 60);
+            
             // Create all Game Items and Enemies
             List<Armor> armors = new List<Armor>();
             List<Weapon> weapons = new List<Weapon>();

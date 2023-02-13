@@ -115,6 +115,10 @@ namespace RPGHeroes
             {
                 throw new ArgumentNullException("item is null: ", nameof(item));
             }
+            if(item.LevelRequirement > _level)
+            {
+                throw new Exception($"I'm too low level to equip this item | requires level {item.LevelRequirement}/ my level {_level}");
+            }
             switch (item)
             {
                 case Weapon:
@@ -201,6 +205,7 @@ namespace RPGHeroes
             _heroAttributes.BaseStrength += strengthIncrease;
             _heroAttributes.BaseDexterity += dexterityIncrease;
             _heroAttributes.BaseIntelligence += intelligenceIncrease;
+            _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
         }
         #region Display Stats, Weapons & Armor
         public void DisplayStats()

@@ -15,7 +15,8 @@ namespace RPGHeroes
         private float _defense = 1;
         private float _damage = 1;
         private bool _isDead = false;
-        private List<Equipment> inventory = new List<Equipment>();
+        private Inventory _inventory = new Inventory();
+        
 
         public Enemy(string name, float maxHealth, float mana, float defense, float damage)
         {
@@ -33,7 +34,15 @@ namespace RPGHeroes
         public float Damage { get => _damage;}
         public float CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
         public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+        public Inventory Inventory { get => _inventory;}
 
+        public void GiveKillRewardFromInventory(Hero rewardTaker)
+        {
+                for (int i = 0; i < _inventory.InventoryList.Count; i++)
+            {
+                rewardTaker.Inventory.Add(_inventory.InventoryList[i]);
+            }
+        }
         public Equipment GiveKillReward(Hero rewardTaker)
         {
             Equipment rewardItem = null;

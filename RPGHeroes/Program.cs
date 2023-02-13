@@ -29,6 +29,10 @@ namespace RPGHeroes
             {
                 Player.Hero.Inventory.Add(item);
             }
+            foreach (Weapon item in weapons)
+            {
+                Player.Hero.Inventory.Add(item);
+            }
             PlayerActionsHandler.PlayerActions();
             
             Console.ReadLine();

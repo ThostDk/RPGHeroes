@@ -38,6 +38,7 @@ namespace RPGHeroes
         {
             Console.WriteLine("                                         |Weapon|                                         ");
             Console.WriteLine($"Weapon name.........: {item.Name}");
+            Console.WriteLine($"Level Requirement...: {item.LevelRequirement}");
             Console.WriteLine($"Weapon Damage.......: {item.Damage}");
             Console.WriteLine($"Weapon Type.........: {item.WeaponType}");
             Console.WriteLine($"Weapon Slot.........: {item.WeaponHand}");
@@ -50,6 +51,7 @@ namespace RPGHeroes
         {
             Console.WriteLine("                                         |Armor|                                          ");
             Console.WriteLine($"Armor name.........: {item.Name}");
+            Console.WriteLine($"Level Requirement..: {item.LevelRequirement}");
             Console.WriteLine($"Armor Defense......: {item.Defense}");
             Console.WriteLine($"Armor Type.........: {item.ArmorType}");
             Console.WriteLine($"Armor Slot.........: {item.ArmorSlot}");

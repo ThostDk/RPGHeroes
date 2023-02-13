@@ -4,6 +4,7 @@ using RPGHeroes.Heroes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,11 +17,11 @@ namespace RPGHeroes
         private int _level = 1;
 
         private Inventory _inventory = new Inventory();
-        
+
         private List<ArmorType> _allowedArmorType = new List<ArmorType>();
         private List<WeaponType> _allowedWeaponType = new List<WeaponType>();
         private HeroAttributes _heroAttributes = new HeroAttributes(0, 0, 0);
-        
+
         // Armor
         Dictionary<ArmorSlot, Armor> armorEquipped = new Dictionary<ArmorSlot, Armor>()
         {
@@ -58,12 +59,12 @@ namespace RPGHeroes
         }
         public void DeathCheck()
         {
-            if (_heroAttributes.CurrentHealth <= 0) 
-            { 
+            if (_heroAttributes.CurrentHealth <= 0)
+            {
                 IsDead = true;
                 Console.WriteLine("Dead");
             }
-            
+
         }
         public virtual float Attack(Hero target)
         {
@@ -72,7 +73,7 @@ namespace RPGHeroes
         }
         public virtual void TakeDamage(float damage)
         {
-           
+
             _heroAttributes.CurrentHealth -= CombatHandler.CalculateDamage(damage, _heroAttributes.Defense);
             DeathCheck();
         }
@@ -81,7 +82,7 @@ namespace RPGHeroes
             Console.WriteLine("Which item would you like to Equip?");
             Console.WriteLine("write the index number you want to equip | write 'exit' to go back");
             string choice = Console.ReadLine();
-            int index = 0;
+            int index = -1;
             choice.ToLower();
             if (choice != "exit")
             {
@@ -95,40 +96,47 @@ namespace RPGHeroes
                 }
                 finally
                 {
-                    try
+                    
+                        if (index < HeroInventoryList.Count && index >= 0)
+                        {
+                            
+                            EquipItem(HeroInventoryList[index]);
+                        }
+                    else
                     {
-                        Console.WriteLine("trying to equip "+ index + " : " +HeroInventoryList[index].Name);
-                        EquipItem(HeroInventoryList[index]);
+                        Console.WriteLine($"could not find entered index: {index}");
+                        EquipItemFromInventory();
                     }
-                    catch (InventoryIndexNotFoundException)
-                    {
-                        Console.WriteLine("could not find entered index", index);
-                    }
+                    
                 }
             }
-            
-            
+
+
         }
         public void EquipItem(Equipment item)
         {
-            if(item == null)
+            if (item == null)
             {
                 throw new ArgumentNullException("item is null: ", nameof(item));
             }
-            if(item.LevelRequirement > _level)
+            else if (item.LevelRequirement > _level)
             {
-                throw new Exception($"I'm too low level to equip this item | requires level {item.LevelRequirement}/ my level {_level}");
+                Console.WriteLine($"I'm too low level to equip this item | requires level {item.LevelRequirement}/ my level {_level}");
             }
-            switch (item)
+            else
             {
-                case Weapon:
-                    EquipWeapon((Weapon)item);
-                    break;
-                case Armor:
-                    EquipArmor((Armor)item);
-                    break;
-                default:
-                    break;
+                Console.WriteLine($"Equipping {item.Name}");
+                switch (item)
+                {
+                    case Weapon:
+                        EquipWeapon((Weapon)item);
+                        break;
+                    case Armor:
+                        EquipArmor((Armor)item);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -166,7 +174,7 @@ namespace RPGHeroes
                         break;
                 }
                 _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
-                
+
             }
         }
         private void EquipWeapon(Weapon weapon)

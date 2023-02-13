@@ -41,11 +41,11 @@ namespace RPGHeroes
             
             if (index >= heroChoices.Count) { index = 0; }
             if (index < 0) { index = heroChoices.Count - 1; }
-
             RenderCurrentClassOption(index);
+            RenderAscii.RenderPlayerActionsMenu("class Selection", heroChoices, index, false);
             ConsoleKeyInfo key;
             key = Console.ReadKey();
-
+            Console.Clear();
 
             switch (key.Key)
             {
@@ -74,6 +74,7 @@ namespace RPGHeroes
             {
                 case 0:
                     RenderAscii.RenderMage();
+                    
                     break;
                 case 1:
                     RenderAscii.RenderRanger();

@@ -21,8 +21,8 @@ namespace RPGHeroes.Heroes
         {
                 base.TakeDamage(damage);
         }
-        
-        public void LevelUp()
+
+        public override void LevelUp()
         {
             base.LevelUpAttributes(3, 2, 1);
         }

@@ -38,7 +38,7 @@ namespace RPGHeroes.GameplayLoop
         public static void PlayerActions()
         {
             Console.Clear();
-            List<string> playerActions = new List<string>() { "inventory", "characterStats", "explore", "exitGame" };
+            List<string> playerActions = new List<string>() { "inventory", "characterStats", "explore","Test: Level Up", "exitGame" };
             string choice = PlayerActionNavigation(0, playerActions, "Options");
             switch (choice)
             {
@@ -57,6 +57,15 @@ namespace RPGHeroes.GameplayLoop
                     Console.Clear();
                     Console.WriteLine("I'm exploring the dungeon!");
                     //make exploration 
+                    break;
+                case "Test: Level Up":
+                    Console.WriteLine($"Leveling up: current level is {Player.Hero.Level}");
+                    Player.Hero.LevelUp();
+                    Console.WriteLine($"your level is now: {Player.Hero.Level}");
+                    Console.WriteLine("lets display stats");
+                    Player.Hero.DisplayStats();
+                    Console.WriteLine(" -> press any key to go back <- ");
+                    Console.ReadLine();
                     break;
                 case "exitGame":
                     Exit();
@@ -104,7 +113,7 @@ namespace RPGHeroes.GameplayLoop
         }
         public static string PlayerActionNavigation(int index, List<string> playerChoices, string menuTitle)
         {
-            RenderAscii.RenderPlayerActionsMenu(playerChoices, index);
+            RenderAscii.RenderPlayerActionsMenu(menuTitle, playerChoices, index, true);
             if (index >= playerChoices.Count) { index = 0; }
             if (index < 0) { index = playerChoices.Count - 1; }
 

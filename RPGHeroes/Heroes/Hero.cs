@@ -198,7 +198,7 @@ namespace RPGHeroes
                 _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
             }
         }
-        
+        public abstract void LevelUp();
         protected void LevelUpAttributes(int strengthIncrease, int dexterityIncrease, int intelligenceIncrease)
         {
             _level += 1;

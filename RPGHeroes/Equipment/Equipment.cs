@@ -24,10 +24,16 @@ namespace RPGHeroes
         public int Damage { get => _damage;}
         public int Defense { get => _defense;}
         public int Durability { get => _durability; set => _durability = value; }
-        
-        public Equipment()
+        public int LevelRequirement { get => _levelRequirement; set => _levelRequirement = value; }
+
+        public Equipment(string name, int levelRequirement, int strength, int dexterity, int intelligence, int durability)
         {
-            
+            this._name = name;
+            this._levelRequirement= levelRequirement;
+            this._strength = strength;
+            this._dexterity = dexterity;
+            this._intelligence = intelligence;
+            this._durability= durability;
         }
 
         public bool IsBroken()

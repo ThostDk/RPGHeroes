@@ -9,7 +9,7 @@ namespace RPGHeroes.Heroes
 {
     public class Barbarian : Hero
     {
-        public Barbarian(string heroName) : base(heroName, 5, 2, 1, new List<ArmorType>{ ArmorType.cloth}, new List<WeaponType> { WeaponType.axe, WeaponType.hammer, WeaponType.sword})
+        public Barbarian(string heroName) : base(heroName, 5, 2, 1, new List<ArmorType>{ ArmorType.mail, ArmorType.plate}, new List<WeaponType> { WeaponType.axe, WeaponType.hammer, WeaponType.sword})
         {
             
         }

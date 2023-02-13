@@ -23,7 +23,7 @@ namespace RPGHeroes
         private HeroAttributes _heroAttributes = new HeroAttributes(0, 0, 0);
 
         // Armor
-        Dictionary<ArmorSlot, Armor> armorEquipped = new Dictionary<ArmorSlot, Armor>()
+        private Dictionary<ArmorSlot, Armor> _armorEquipped = new Dictionary<ArmorSlot, Armor>()
         {
             {ArmorSlot.helmet,null},
             {ArmorSlot.bodyArmor,null},
@@ -32,7 +32,7 @@ namespace RPGHeroes
             {ArmorSlot.boots,null},
         };
         // Weapons
-        Dictionary<WeaponHand, Weapon> weaponEquipped = new Dictionary<WeaponHand, Weapon>()
+        private Dictionary<WeaponHand, Weapon> _weaponEquipped = new Dictionary<WeaponHand, Weapon>()
         {
             {WeaponHand.mainHand,null},
             {WeaponHand.offHand,null},
@@ -45,6 +45,10 @@ namespace RPGHeroes
         public HeroAttributes HeroAttributes { get => _heroAttributes; set => _heroAttributes = value; }
         public Inventory Inventory { get => _inventory; set => _inventory = value; }
         public List<Equipment> HeroInventoryList => _inventory.InventoryList;
+
+        public Dictionary<ArmorSlot, Armor> GetArmorEquipped { get => _armorEquipped;}
+        public Dictionary<WeaponHand, Weapon> GetWeaponEquipped { get => _weaponEquipped;}
+
         public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType, List<WeaponType> allowedWeaponType)
         {
             _heroName = heroName;
@@ -54,7 +58,7 @@ namespace RPGHeroes
 
             _allowedArmorType = allowedArmorType;
             _allowedWeaponType = allowedWeaponType;
-            _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
+            _heroAttributes.AddStatsFromEquipment(_armorEquipped, _weaponEquipped);
 
         }
         public void DeathCheck()
@@ -66,7 +70,7 @@ namespace RPGHeroes
             }
 
         }
-        public virtual float Attack(Hero target)
+        public virtual float Attack(Enemy target)
         {
             Console.WriteLine($"|Performing basic attack| Raw damage: {_heroAttributes.Damage} ");
             return _heroAttributes.Damage;
@@ -156,24 +160,24 @@ namespace RPGHeroes
                 switch (armor.ArmorSlot)
                 {
                     case ArmorSlot.helmet:
-                        armorEquipped[ArmorSlot.helmet] = armor;
+                        _armorEquipped[ArmorSlot.helmet] = armor;
                         break;
                     case ArmorSlot.bodyArmor:
-                        armorEquipped[ArmorSlot.bodyArmor] = armor;
+                        _armorEquipped[ArmorSlot.bodyArmor] = armor;
                         break;
                     case ArmorSlot.gloves:
-                        armorEquipped[ArmorSlot.gloves] = armor;
+                        _armorEquipped[ArmorSlot.gloves] = armor;
                         break;
                     case ArmorSlot.pants:
-                        armorEquipped[ArmorSlot.pants] = armor;
+                        _armorEquipped[ArmorSlot.pants] = armor;
                         break;
                     case ArmorSlot.boots:
-                        armorEquipped[ArmorSlot.boots] = armor;
+                        _armorEquipped[ArmorSlot.boots] = armor;
                         break;
                     default:
                         break;
                 }
-                _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
+                _heroAttributes.AddStatsFromEquipment(_armorEquipped, _weaponEquipped);
 
             }
         }
@@ -188,22 +192,22 @@ namespace RPGHeroes
                 switch (weapon.WeaponHand)
                 {
                     case WeaponHand.mainHand:
-                        weaponEquipped[WeaponHand.mainHand] = weapon;
-                        weaponEquipped[WeaponHand.both] = null;
+                        _weaponEquipped[WeaponHand.mainHand] = weapon;
+                        _weaponEquipped[WeaponHand.both] = null;
                         break;
                     case WeaponHand.offHand:
-                        weaponEquipped[WeaponHand.offHand] = weapon;
-                        weaponEquipped[WeaponHand.both] = null;
+                        _weaponEquipped[WeaponHand.offHand] = weapon;
+                        _weaponEquipped[WeaponHand.both] = null;
                         break;
                     case WeaponHand.both:
-                        weaponEquipped[WeaponHand.both] = weapon;
-                        weaponEquipped[WeaponHand.offHand] = null;
-                        weaponEquipped[WeaponHand.mainHand] = null;
+                        _weaponEquipped[WeaponHand.both] = weapon;
+                        _weaponEquipped[WeaponHand.offHand] = null;
+                        _weaponEquipped[WeaponHand.mainHand] = null;
                         break;
                     default:
                         break;
                 }
-                _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
+                _heroAttributes.AddStatsFromEquipment(_armorEquipped, _weaponEquipped);
             }
         }
         public abstract void LevelUp();
@@ -213,7 +217,7 @@ namespace RPGHeroes
             _heroAttributes.BaseStrength += strengthIncrease;
             _heroAttributes.BaseDexterity += dexterityIncrease;
             _heroAttributes.BaseIntelligence += intelligenceIncrease;
-            _heroAttributes.AddStatsFromEquipment(armorEquipped, weaponEquipped);
+            _heroAttributes.AddStatsFromEquipment(_armorEquipped, _weaponEquipped);
         }
         #region Display Stats, Weapons & Armor
         public void DisplayStats()
@@ -221,7 +225,7 @@ namespace RPGHeroes
             Console.WriteLine("*--------------------------------------------------*");
             Console.WriteLine($"{_heroName}'s stats & attributes are as follows:");
             Console.WriteLine($"Strength:----|{_heroAttributes.Strength}");
-            Console.WriteLine($"Dexterity:-----|{_heroAttributes.Dexterity}");
+            Console.WriteLine($"Dexterity:---|{_heroAttributes.Dexterity}");
             Console.WriteLine($"Intelligence:|{_heroAttributes.Intelligence}");
             Console.WriteLine($"Health:------|{_heroAttributes.MaxHealth}");
             Console.WriteLine($"Mana:--------|{_heroAttributes.CurrentMana}");
@@ -233,11 +237,11 @@ namespace RPGHeroes
         {
             Console.WriteLine("*--------------------------------------------------*");
             Console.WriteLine($"{_heroName}'s Inventory is as follows:");
-            Console.WriteLine($"Helmet:----|{DisplayArmorItem(armorEquipped[ArmorSlot.helmet])}");
-            Console.WriteLine($"Body Armor:|{DisplayArmorItem(armorEquipped[ArmorSlot.bodyArmor])}");
-            Console.WriteLine($"Gloves:----|{DisplayArmorItem(armorEquipped[ArmorSlot.gloves])}");
-            Console.WriteLine($"Pants:-----|{DisplayArmorItem(armorEquipped[ArmorSlot.pants])}");
-            Console.WriteLine($"Boots:-----|{DisplayArmorItem(armorEquipped[ArmorSlot.boots])}");
+            Console.WriteLine($"Helmet:----|{DisplayArmorItem(_armorEquipped[ArmorSlot.helmet])}");
+            Console.WriteLine($"Body Armor:|{DisplayArmorItem(_armorEquipped[ArmorSlot.bodyArmor])}");
+            Console.WriteLine($"Gloves:----|{DisplayArmorItem(_armorEquipped[ArmorSlot.gloves])}");
+            Console.WriteLine($"Pants:-----|{DisplayArmorItem(_armorEquipped[ArmorSlot.pants])}");
+            Console.WriteLine($"Boots:-----|{DisplayArmorItem(_armorEquipped[ArmorSlot.boots])}");
             DisplayWeaponItem();
             Console.WriteLine("*--------------------------------------------------*");
         }
@@ -256,17 +260,17 @@ namespace RPGHeroes
         }
         private void DisplayWeaponItem()
         {
-            if (weaponEquipped[WeaponHand.both] != null)
+            if (_weaponEquipped[WeaponHand.both] != null)
             {
-                Console.WriteLine($"Both Hands:|{weaponEquipped[WeaponHand.both].Name}");
+                Console.WriteLine($"Both Hands:|{_weaponEquipped[WeaponHand.both].Name}");
             }
-            if (weaponEquipped[WeaponHand.mainHand] != null)
+            if (_weaponEquipped[WeaponHand.mainHand] != null)
             {
-                Console.WriteLine($"Main Hand:-|{weaponEquipped[WeaponHand.mainHand].Name}");
+                Console.WriteLine($"Main Hand:-|{_weaponEquipped[WeaponHand.mainHand].Name}");
             }
-            if (weaponEquipped[WeaponHand.offHand] != null)
+            if (_weaponEquipped[WeaponHand.offHand] != null)
             {
-                Console.WriteLine($"Off Hand:--|{weaponEquipped[WeaponHand.offHand].Name}");
+                Console.WriteLine($"Off Hand:--|{_weaponEquipped[WeaponHand.offHand].Name}");
             }
         }
         #endregion

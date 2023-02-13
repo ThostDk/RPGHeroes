@@ -149,5 +149,73 @@ namespace RPGHeroesTest
         }
 
         #endregion
+        #region EquipItemFromInventory_Test
+        //Testing the Hero Equipping logic using the Method called EquipItem
+        //which then calls its sub methods for equipping weapon/armor types
+        [Fact]
+        public void EquipItem_EquippingListOfItems_ItemsEndsInCharacterSlots()
+        {
+            //Arrange
+            List<Equipment> testItems = new List<Equipment>()
+            {
+                new Armor(ArmorSlot.helmet, ArmorType.leather, "test helmet", 1, 2, 3, 4, 5),
+                new Armor(ArmorSlot.bodyArmor, ArmorType.leather, "test body", 1, 2, 3, 4, 5),
+                new Armor(ArmorSlot.pants, ArmorType.leather, "test pants", 1, 2, 3, 4, 5),
+                new Armor(ArmorSlot.gloves, ArmorType.leather, "test gloves", 1, 2, 3, 4, 5),
+                new Armor(ArmorSlot.boots, ArmorType.leather, "test boots", 1, 2, 3, 4, 5),
+                new Weapon(WeaponType.dagger, WeaponHand.mainHand,"test dagger", 1, 2, 3, 4, 5),
+                new Weapon(WeaponType.sword, WeaponHand.offHand,"test sword", 1, 2, 3, 4, 5),
+            };
+            Rogue testRogue = new Rogue("testRogue");
+
+            List<Equipment> expectedItemsInSlots = testItems;
+            
+            //Assert
+            foreach (Equipment item in testItems)
+            {
+                testRogue.EquipItem(item);
+                
+            }
+            List<Equipment> actualItemsInSlots = new List<Equipment>()
+            {
+                testRogue.GetArmorEquipped[ArmorSlot.helmet],
+                testRogue.GetArmorEquipped[ArmorSlot.bodyArmor],
+                testRogue.GetArmorEquipped[ArmorSlot.pants],
+                testRogue.GetArmorEquipped[ArmorSlot.gloves],
+                testRogue.GetArmorEquipped[ArmorSlot.boots],
+                testRogue.GetWeaponEquipped[WeaponHand.mainHand],
+                testRogue.GetWeaponEquipped[WeaponHand.offHand],
+            };
+            
+            //Act
+            Assert.Equivalent(expectedItemsInSlots, actualItemsInSlots);
+        }
+        [Fact]
+        public void EquipItem_EquippingItemOfWrongLevelRequirement_ItemSlotStaysEmpty()
+        {
+            //Arrange
+
+            Armor testItem = new Armor(ArmorSlot.helmet, ArmorType.leather, "test helmet", 2, 2, 3, 4, 5);
+            Rogue testRogue = new Rogue("testRogue");
+            Armor expectedOutcome = null;
+            //Assert
+            testRogue.EquipItem(testItem);
+            //Act
+            Assert.Equal(expectedOutcome, testRogue.GetArmorEquipped[ArmorSlot.helmet]);
+        }
+        [Fact]
+        public void EquipItem_EquippingItemOfWrongItemType_ItemSlotStaysEmpty()
+        {
+            //Arrange
+
+            Armor testItem = new Armor(ArmorSlot.helmet, ArmorType.plate, "test helmet", 1, 2, 3, 4, 5);
+            Rogue testRogue = new Rogue("testRogue");
+            Armor expectedOutcome = null;
+            //Assert
+            testRogue.EquipItem(testItem);
+            //Act
+            Assert.Equal(expectedOutcome, testRogue.GetArmorEquipped[ArmorSlot.helmet]);
+        }
+        #endregion
     }
 }

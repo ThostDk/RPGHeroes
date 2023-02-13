@@ -13,7 +13,7 @@ namespace RPGHeroes.Heroes
         {
             
         }
-        public override float Attack(Hero target)
+        public override float Attack(Enemy target)
         {
                 return base.Attack(target);
         }

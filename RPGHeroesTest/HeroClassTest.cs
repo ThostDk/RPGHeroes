@@ -1,10 +1,228 @@
 using RPGHeroes;
 using RPGHeroes.Heroes;
+using Xunit.Sdk;
 
 namespace RPGHeroesTest
 {
     public class HeroClassTest
     {
+        #region Mage Constructor Test
+        [Fact]
+        public void MageConstructor_InstantiateMage_instantObjShouldHaveMageBasicAttributes()
+        {
+            //Arrange
+            string expectedName = "testMage";
+            int expectedLevel = 1;
+            List<ArmorType> expectedArmorTypes = new List<ArmorType>()
+            {
+                ArmorType.cloth
+            };
+            List<WeaponType> expectedWeaponTypes = new List<WeaponType>()
+            {
+                WeaponType.staff,
+                WeaponType.wand
+            };
+            List<int> expectedAttributes = new List<int>()
+            {
+                1,1,8
+            };
+            object[] expected = new object[]
+            {
+                expectedName,
+                expectedLevel,
+                expectedAttributes,
+                expectedArmorTypes,
+                expectedWeaponTypes
+            };
+
+            //Assert
+            Mage testMage = new Mage("testMage");
+            List<ArmorType> actualArmorTypes = testMage.AllowedArmorType;
+            List<WeaponType> actualWeaponTypes = testMage.AllowedWeaponType;
+
+            List<int> actualAttributes = new List<int>()
+            {
+                testMage.HeroAttributes.Strength,
+                testMage.HeroAttributes.Dexterity,
+                testMage.HeroAttributes.Intelligence
+            };
+            object[] actual = new object[]
+            {
+                testMage.HeroName,
+                testMage.Level,
+                actualAttributes,
+                actualArmorTypes,
+                actualWeaponTypes
+            };
+
+            //Act
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+        #region Barbarian Constructor Test
+        [Fact]
+        public void BarbarianConstructor_InstantiateBarbarian_instantObjShouldHaveMageBasicAttributes()
+        {
+            //Arrange
+            string expectedName = "testBarbarian";
+            int expectedLevel = 1;
+            List<ArmorType> expectedArmorTypes = new List<ArmorType>()
+            {
+                ArmorType.mail,
+                ArmorType.plate
+            };
+            List<WeaponType> expectedWeaponTypes = new List<WeaponType>()
+            {
+                WeaponType.axe,
+                WeaponType.hammer,
+                WeaponType.sword
+            };
+            List<int> expectedAttributes = new List<int>()
+            {
+                5,2,1
+            };
+            object[] expected = new object[]
+            {
+                expectedName,
+                expectedLevel,
+                expectedAttributes,
+                expectedArmorTypes,
+                expectedWeaponTypes,
+            };
+
+            //Assert
+            Barbarian testBarbarian = new Barbarian("testBarbarian");
+            List<ArmorType> actualArmorTypes = testBarbarian.AllowedArmorType;
+            List<WeaponType> actualWeaponTypes = testBarbarian.AllowedWeaponType;
+
+            List<int> actualAttributes = new List<int>()
+            {
+                testBarbarian.HeroAttributes.Strength,
+                testBarbarian.HeroAttributes.Dexterity,
+                testBarbarian.HeroAttributes.Intelligence
+            };
+            object[] actual = new object[]
+            {
+                testBarbarian.HeroName,
+                testBarbarian.Level,
+                actualAttributes,
+                actualArmorTypes,
+                actualWeaponTypes
+            };
+
+            //Act
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+        #region Ranger Constructor Test
+        [Fact]
+        public void RangerConstructor_InstantiateRanger_instantObjShouldHaveMageBasicAttributes()
+        {
+            //Arrange
+            string expectedName = "testRanger";
+            int expectedLevel = 1;
+            List<ArmorType> expectedArmorTypes = new List<ArmorType>()
+            {
+                ArmorType.leather,
+                ArmorType.mail
+            };
+            List<WeaponType> expectedWeaponTypes = new List<WeaponType>()
+            {
+                WeaponType.bow,
+                WeaponType.dagger
+            };
+            List<int> expectedAttributes = new List<int>()
+            {
+                1,7,1
+            };
+            object[] expected = new object[]
+            {
+                expectedName,
+                expectedLevel,
+                expectedAttributes,
+                expectedArmorTypes,
+                expectedWeaponTypes
+            };
+
+            //Assert
+            Ranger testRanger = new Ranger("testRanger");
+            List<ArmorType> actualArmorTypes = testRanger.AllowedArmorType;
+            List<WeaponType> actualWeaponTypes = testRanger.AllowedWeaponType;
+
+            List<int> actualAttributes = new List<int>()
+            {
+                testRanger.HeroAttributes.Strength,
+                testRanger.HeroAttributes.Dexterity,
+                testRanger.HeroAttributes.Intelligence
+            };
+            object[] actual = new object[]
+            {
+                testRanger.HeroName,
+                testRanger.Level,
+                actualAttributes,
+                actualArmorTypes,
+                actualWeaponTypes
+            };
+
+            //Act
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+        #region Rogue Constructor Test
+        [Fact]
+        public void RogueConstructor_InstantiateRogue_instantObjShouldHaveMageBasicAttributes()
+        {
+            //Arrange
+            string expectedName = "testRogue";
+            int expectedLevel = 1;
+            List<ArmorType> expectedArmorTypes = new List<ArmorType>()
+            {
+                ArmorType.leather,
+                ArmorType.mail
+            };
+            List<WeaponType> expectedWeaponTypes = new List<WeaponType>()
+            {
+                WeaponType.dagger,
+                WeaponType.sword
+            };
+            List<int> expectedAttributes = new List<int>()
+            {
+                2,6,1
+            };
+            object[] expected = new object[]
+            {
+                expectedName,
+                expectedLevel,
+                expectedAttributes,
+                expectedArmorTypes,
+                expectedWeaponTypes
+            };
+
+            //Assert
+            Rogue testRogue = new Rogue("testRogue");
+            List<ArmorType> actualArmorTypes = testRogue.AllowedArmorType;
+            List<WeaponType> actualWeaponTypes = testRogue.AllowedWeaponType;
+
+            List<int> actualAttributes = new List<int>()
+            {
+                testRogue.HeroAttributes.Strength,
+                testRogue.HeroAttributes.Dexterity,
+                testRogue.HeroAttributes.Intelligence,
+                
+            };
+            object[] actual = new object[]
+            {
+                testRogue.HeroName,
+                testRogue.Level,
+                actualAttributes,
+                actualArmorTypes,
+                actualWeaponTypes
+            };
+
+            //Act
+            Assert.Equal(expected, actual);
+        }
+        #endregion
         #region Mage_Level_Test
         [Fact]
         public void MageLevelUp_LevelUpCall_ShouldLevelby1()

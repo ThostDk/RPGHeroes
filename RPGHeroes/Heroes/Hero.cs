@@ -48,6 +48,8 @@ namespace RPGHeroes
 
         public Dictionary<ArmorSlot, Armor> GetArmorEquipped { get => _armorEquipped;}
         public Dictionary<WeaponHand, Weapon> GetWeaponEquipped { get => _weaponEquipped;}
+        public List<ArmorType> AllowedArmorType { get => _allowedArmorType;}
+        public List<WeaponType> AllowedWeaponType { get => _allowedWeaponType;}
 
         public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType, List<WeaponType> allowedWeaponType)
         {

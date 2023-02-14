@@ -9,7 +9,7 @@ namespace RPGHeroes.Heroes
 {
     public class Mage : Hero
     {
-        public Mage(string heroName) : base(heroName, 1, 1, 8, new List<ArmorType>{ ArmorType.cloth}, new List<WeaponType> { WeaponType.wand, WeaponType.staff})
+        public Mage(string heroName) : base(heroName, 1, 1, 8, new List<ArmorType>{ ArmorType.cloth}, new List<WeaponType> { WeaponType.staff, WeaponType.wand })
         {
             
         }

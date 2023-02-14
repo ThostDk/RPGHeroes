@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RPGHeroes
 {
@@ -18,9 +19,13 @@ namespace RPGHeroes
 
             List<string> HeroChoices = new List<string>() { "mage", "ranger", "barbarian", "rogue" };
             string choice = HeroSelectionNavigation(0, HeroChoices);
-
-            Console.WriteLine("Tell us your Hero's Name");
-            string name = Console.ReadLine();
+            RenderAscii.RenderNameBook();
+            Console.WriteLine("Tell us your Hero's Name: (Minimum 3 Characters)");
+            string? name = Console.ReadLine();
+            while (name.Length < 3)
+            {
+               name = Console.ReadLine();
+            }
             switch (choice)
             {
                 case "mage":
@@ -50,6 +55,7 @@ namespace RPGHeroes
             switch (key.Key)
             {
                 case ConsoleKey.Enter:
+                case ConsoleKey.Spacebar:
                     return heroChoices[index];
 
                 case ConsoleKey.LeftArrow:

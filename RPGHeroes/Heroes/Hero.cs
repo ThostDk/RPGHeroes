@@ -80,45 +80,10 @@ namespace RPGHeroes
         public virtual void TakeDamage(float damage)
         {
 
-            _heroAttributes.CurrentHealth -= CombatHandler.CalculateDamage(damage, _heroAttributes.Defense);
+            _heroAttributes.CurrentHealth -= CombatController.CalculateDamage(damage, _heroAttributes.Defense);
             DeathCheck();
         }
-        public void EquipItemFromInventory()
-        {
-            Console.WriteLine("Which item would you like to Equip?");
-            Console.WriteLine("write the index number you want to equip | write 'exit' to go back");
-            string choice = Console.ReadLine();
-            int index = -1;
-            choice.ToLower();
-            if (choice != "exit")
-            {
-                try
-                {
-                    index = Int32.Parse(choice);
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Could not parse the input to index number");
-                }
-                finally
-                {
-                    
-                        if (index < HeroInventoryList.Count && index >= 0)
-                        {
-                            
-                            EquipItem(HeroInventoryList[index]);
-                        }
-                    else
-                    {
-                        Console.WriteLine($"could not find entered index: {index}");
-                        EquipItemFromInventory();
-                    }
-                    
-                }
-            }
-
-
-        }
+        
         public void EquipItem(Equipment item)
         {
             if (item == null)

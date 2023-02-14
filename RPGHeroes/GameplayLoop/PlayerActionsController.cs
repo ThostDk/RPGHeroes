@@ -12,7 +12,7 @@ namespace RPGHeroes.GameplayLoop
 {
     public static class PlayerActionsController
     {
-
+        private static bool _testItemsAddedToInventory = false;
 
         private static void Exit()
         {
@@ -38,7 +38,7 @@ namespace RPGHeroes.GameplayLoop
         public static void PlayerActions()
         {
             Console.Clear();
-            List<string> playerActions = new List<string>() { "inventory", "characterStats", "explore","Test: Level Up", "exitGame" };
+            List<string> playerActions = new List<string>() { "inventory", "characterStats", "explore", "Test: Level Up", "Test: Get All Items", "exitGame" };
             string choice = PlayerActionNavigation(0, playerActions, "Options");
             switch (choice)
             {
@@ -55,15 +55,38 @@ namespace RPGHeroes.GameplayLoop
                     break;
                 case "explore":
                     Console.Clear();
-                    Console.WriteLine("I'm exploring the dungeon!");
+                    Explore.SearchRoom();
+                    Console.WriteLine(" -> press any key to go back <- ");
+                    Console.ReadLine();
                     //make exploration 
                     break;
                 case "Test: Level Up":
+                    Console.Clear();
                     Console.WriteLine($"Leveling up: current level is {Player.Hero.Level}");
                     Player.Hero.LevelUp();
                     Console.WriteLine($"your level is now: {Player.Hero.Level}");
                     Console.WriteLine("lets display stats");
                     Player.Hero.DisplayStats();
+                    Console.WriteLine(" -> press any key to go back <- ");
+                    Console.ReadLine();
+                    break;
+                case "Test: Get All Items":
+                    Console.Clear();
+                    if (!_testItemsAddedToInventory)
+                    {
+                        foreach (Armor item in GameContentSpawner.Instance.Armors)
+                        {
+                            Player.Hero.Inventory.Add(item);
+                            Console.WriteLine($"|{item.Name}| has been added to your inventory");
+                        }
+                        foreach (Weapon item in GameContentSpawner.Instance.Weapons)
+                        {
+                            Player.Hero.Inventory.Add(item);
+                            Console.WriteLine($"|{item.Name}| has been added to your inventory");
+                        }
+                        _testItemsAddedToInventory = true;
+                    }
+                    else { Console.WriteLine("You already have all items in the game"); }
                     Console.WriteLine(" -> press any key to go back <- ");
                     Console.ReadLine();
                     break;
@@ -97,7 +120,7 @@ namespace RPGHeroes.GameplayLoop
                 case "equipItem":
                     Console.Clear();
                     Player.Hero.Inventory.DisplayInventory();
-                    Player.Hero.EquipItemFromInventory();
+                    CaseEquipItemFromInventory();
                     Console.WriteLine(" -> press any key to go back <- ");
                     Console.ReadLine();
                     break;
@@ -111,33 +134,67 @@ namespace RPGHeroes.GameplayLoop
 
             PlayerInventoryActions();
         }
+        private static void CaseEquipItemFromInventory()
+        {
+            string choice = "";
+            while (choice != "exit")
+            {
+                Equipment? item = null;
+                Console.WriteLine("Which item would you like to Equip?");
+                Console.WriteLine("write the Index number you want to equip | write 'exit' to go back");
+                choice = Console.ReadLine();
+                choice.ToLower();
+                int index = -1;
+                if (choice == "exit")
+                {
+                    return;
+                }
+                try
+                {
+                    index = Int32.Parse(choice);
+                    item = Player.Hero.Inventory.EquipItemFromInventory(index);
+                }
+                catch (FormatException)
+                {
+
+                    Console.WriteLine("Could not parse the input to index number");
+                }
+                finally
+                {
+                    if (item != null)
+                    {
+                        Player.Hero.EquipItem(item);
+                        item = null;
+                    }
+                }
+            }
+        }
         public static string PlayerActionNavigation(int index, List<string> playerChoices, string menuTitle)
         {
             RenderAscii.RenderPlayerActionsMenu(menuTitle, playerChoices, index, true);
             if (index >= playerChoices.Count) { index = 0; }
             if (index < 0) { index = playerChoices.Count - 1; }
-
             ConsoleKeyInfo action;
             action = Console.ReadKey();
-
 
             switch (action.Key)
             {
                 case ConsoleKey.Enter:
+                case ConsoleKey.Spacebar:
                     return playerChoices[index];
                 case ConsoleKey.LeftArrow:
                 case ConsoleKey.UpArrow:
                     index--;
                     return PlayerActionNavigation(index, playerChoices, menuTitle);
-                    
+
                 case ConsoleKey.RightArrow:
                 case ConsoleKey.DownArrow:
                     index++;
                     return PlayerActionNavigation(index, playerChoices, menuTitle);
-                    
+
                 default:
                     return PlayerActionNavigation(index, playerChoices, menuTitle);
-                    
+
             }
             throw new Exception("How did you even get here?! anyways... you somehow pressed a key that neither activated any case or the default recursion call");
 

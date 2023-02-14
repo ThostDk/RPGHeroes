@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGHeroes.GameplayLoop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace RPGHeroes
         public float CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
         public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
         public Inventory Inventory { get => _inventory;}
+        public bool IsDead { get => _isDead; set => _isDead = value; }
 
         public void GiveKillRewardFromInventory(Hero rewardTaker)
         {
@@ -43,47 +45,12 @@ namespace RPGHeroes
                 rewardTaker.Inventory.Add(_inventory.InventoryList[i]);
             }
         }
-        public Equipment GiveKillReward(Hero rewardTaker)
-        {
-            Equipment rewardItem = null;
-            if (RandomNumbers.RandomNr.Next(0, 1) == 1)
-            {
-                rewardItem = ArmorFactory.CreateEquipment()[RandomNumbers.RandomNr.Next(0, ArmorFactory.CreateEquipment().Count() - 1)];
-                DisplayReward((Armor)rewardItem);
-                rewardTaker.EquipItem(rewardItem);
-            }
-            else
-            {
-                rewardItem = WeaponFactory.CreateEquipment()[RandomNumbers.RandomNr.Next(0, WeaponFactory.CreateEquipment().Count() - 1)];
-                DisplayReward((Weapon)rewardItem);
-                rewardTaker.EquipItem((Weapon)rewardItem);
-            }
-            
-            return rewardItem;
-        }
-        private void DisplayReward(Weapon item)
+        public void OnDeathReward()
         {
             Console.WriteLine($"Congratulations you killed {_name}");
-            Console.WriteLine($"It dropped a item for you: {item.Name}");
-            Console.WriteLine($"Weapon Damage: {item.Damage}");
-            Console.WriteLine($"Weapon Type: {item.WeaponType}");
-            Console.WriteLine($"Weapon Slot: {item.WeaponHand}");
-            Console.WriteLine($"Weapon Strength: {item.Strength}");
-            Console.WriteLine($"Weapon Dexterity: {item.Dexterity}");
-            Console.WriteLine($"Weapon Intelligence: {item.Intelligence}");
-
+            Console.WriteLine($"It dropped a item for you!");
+            Reward.GiveReward(Player.Hero.Inventory);
         }
-        private void DisplayReward(Armor item)
-        {
-            Console.WriteLine($"Congratulations you killed {_name}");
-            Console.WriteLine($"It dropped a item for you: {item.Name}");
-            Console.WriteLine($"Armor Type: {item.ArmorType}");
-            Console.WriteLine($"Armor Slot: {item.ArmorSlot}");
-            Console.WriteLine($"Armor defense: {item.Defense}");
-            Console.WriteLine($"Armor Strength: {item.Strength}");
-            Console.WriteLine($"Armor Dexterity: {item.Dexterity}");
-            Console.WriteLine($"Armor Intelligence: {item.Intelligence}");
-
-        }
+        
     }
 }

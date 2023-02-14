@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGHeroes.GameplayLoop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,10 @@ namespace RPGHeroes
         public void Add(Equipment item) { _inventoryList.Add(item); }
         public void DisplayInventory()
         {
+            if (_inventoryList.Count <= 0)
+            {
+                Console.WriteLine("*----------------------------->  Your inventory is empty :(  <-----------------------------*");
+            }
             for (int i = 0; i < _inventoryList.Count; i++)
             {
                 Console.WriteLine($"*-----------------------------(|Inventory Slot Index({i})|)-----------------------------*");
@@ -34,6 +39,19 @@ namespace RPGHeroes
                 }
             }
         }
+        public Equipment EquipItemFromInventory(int index)
+        {
+            Equipment? outputItem = null;
+            if (index < _inventoryList.Count && index >= 0)
+            {
+                outputItem = _inventoryList[index];
+            }
+            else
+            {
+                Console.WriteLine($"could not find entered index: {index}");
+            }
+            return outputItem;
+        }
         public void DisplayWeapon(Weapon item)
         {
             Console.WriteLine("                                         |Weapon|                                         ");
@@ -45,7 +63,7 @@ namespace RPGHeroes
             Console.WriteLine($"Weapon Strength.....: {item.Strength}");
             Console.WriteLine($"Weapon Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Weapon Intelligence.: {item.Intelligence}");
-            
+
         }
         public void DisplayArmor(Armor item)
         {
@@ -58,7 +76,7 @@ namespace RPGHeroes
             Console.WriteLine($"Armor Strength.....: {item.Strength}");
             Console.WriteLine($"Armor Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Armor Intelligence.: {item.Intelligence}");
-            
+
         }
     }
 }

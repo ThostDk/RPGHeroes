@@ -116,8 +116,6 @@ namespace RPGHeroes
                     
                 }
             }
-
-
         }
         public void EquipItem(Equipment item)
         {

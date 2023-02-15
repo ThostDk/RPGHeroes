@@ -16,7 +16,9 @@ namespace RPGHeroes
             new Armor(ArmorSlot.gloves,ArmorType.plate,"Rusty Gauntlet",1 , 2, 0, 3, 0),
             new Armor(ArmorSlot.pants,ArmorType.plate,"Plated Shorts",1 , 4, 0, 2, 3),
             new Armor(ArmorSlot.boots,ArmorType.plate,"Plated Boots",1 , 2, 0, 1, 1),
+            new Armor(ArmorSlot.boots,ArmorType.plate,"Fancy Plate Boots",2 , 4, 2, 4, 3),
 
+            new Armor(ArmorSlot.helmet,ArmorType.mail,"Mithril chainmail Hat",3 , 5, 2, 4, 5),
             new Armor(ArmorSlot.helmet,ArmorType.mail,"chainmail coif",1 , 5, 0, 0, -2),
             new Armor(ArmorSlot.bodyArmor,ArmorType.mail,"Lamellar body armor",1 , 0, 5, 4, 10),
             new Armor(ArmorSlot.gloves,ArmorType.mail,"chainmail gloves",1 , 2, 0, 3, 0),
@@ -26,6 +28,7 @@ namespace RPGHeroes
             new Armor(ArmorSlot.helmet, ArmorType.leather,"Leather Cap",1 , 2, 1, 0, 3),
             new Armor(ArmorSlot.bodyArmor, ArmorType.leather,"Brigandine",1 , 4, 1, 2, 3),
             new Armor(ArmorSlot.gloves, ArmorType.leather,"Fur Gloves",1 , 3, 0, 2, 0),
+            new Armor(ArmorSlot.gloves, ArmorType.leather,"Crocodile Leather Gloves",5 , 8, 6, 9, 2),
             new Armor(ArmorSlot.pants, ArmorType.leather,"Studded Pants",1 , 2, 0, 1, 4),
             new Armor(ArmorSlot.boots, ArmorType.leather,"Sandals",1 , 1, 1, 0, 3),
 
@@ -34,6 +37,7 @@ namespace RPGHeroes
             new Armor(ArmorSlot.gloves, ArmorType.cloth,"Fingerless Gloves",1 , 0, 5, 1, 0),
             new Armor(ArmorSlot.pants, ArmorType.cloth,"Pants, Just pants...",1 , 2, 3, 3, 1),
             new Armor(ArmorSlot.boots, ArmorType.cloth,"Socks",1 , 0, 3, 1, 0),
+            new Armor(ArmorSlot.boots, ArmorType.cloth,"Gandalfs grey Socks",8 , 3, 2, 20, 0),
             };
             return armor;
         }

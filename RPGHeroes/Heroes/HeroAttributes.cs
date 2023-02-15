@@ -15,11 +15,11 @@ namespace RPGHeroes.Heroes
         private int _dexterity = 0;
         private int _intelligence = 0;
 
-        
-        private float _maxHealth = 1;
         private float _currentHealth = 1;
+        private float _maxHealth = 1;
         private float _currentMana = 0;
         private float _maxMana = 0;
+
         private float _defense = 0;
         private float _damage = 1;
         public HeroAttributes(int baseStrength, int baseDexterity, int baseIntelligence)
@@ -73,6 +73,5 @@ namespace RPGHeroes.Heroes
             _currentMana = _maxMana;
             _defense += _dexterity * 0.2f;
         }
-        
     }
 }

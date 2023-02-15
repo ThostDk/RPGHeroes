@@ -46,10 +46,10 @@ namespace RPGHeroes
         public Inventory Inventory { get => _inventory; set => _inventory = value; }
         public List<Equipment> HeroInventoryList => _inventory.InventoryList;
 
-        public Dictionary<ArmorSlot, Armor> GetArmorEquipped { get => _armorEquipped;}
-        public Dictionary<WeaponHand, Weapon> GetWeaponEquipped { get => _weaponEquipped;}
-        public List<ArmorType> AllowedArmorType { get => _allowedArmorType;}
-        public List<WeaponType> AllowedWeaponType { get => _allowedWeaponType;}
+        public Dictionary<ArmorSlot, Armor> GetArmorEquipped { get => _armorEquipped; }
+        public Dictionary<WeaponHand, Weapon> GetWeaponEquipped { get => _weaponEquipped; }
+        public List<ArmorType> AllowedArmorType { get => _allowedArmorType; }
+        public List<WeaponType> AllowedWeaponType { get => _allowedWeaponType; }
 
         public Hero(string heroName, int baseStrength, int baseDexterity, int baseIntelligence, List<ArmorType> allowedArmorType, List<WeaponType> allowedWeaponType)
         {
@@ -63,27 +63,36 @@ namespace RPGHeroes
             _heroAttributes.AddStatsFromEquipment(_armorEquipped, _weaponEquipped);
 
         }
-        public void DeathCheck()
-        {
-            if (_heroAttributes.CurrentHealth <= 0)
-            {
-                IsDead = true;
-                Console.WriteLine("Dead");
-            }
 
-        }
-        public virtual float Attack(Enemy target)
+        public virtual void AttackEnemy(Enemy target)
         {
-            Console.WriteLine($"|Performing basic attack| Raw damage: {_heroAttributes.Damage} ");
-            return _heroAttributes.Damage;
+            if (!_isDead)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                float damage = CombatController.CalculateDamage(_heroAttributes.Damage, target.Defense);
+                Console.WriteLine($"{HeroName} attacks {target.Name} dealing: {damage} Damage");
+                target.TakeDamage(damage);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
         public virtual void TakeDamage(float damage)
         {
-
-            _heroAttributes.CurrentHealth -= CombatController.CalculateDamage(damage, _heroAttributes.Defense);
+            Console.ForegroundColor = ConsoleColor.Red;
+            _heroAttributes.CurrentHealth -= damage;
+            Console.WriteLine($"{HeroName} takes {damage} damage. {HeroName}'s health is now {_heroAttributes.CurrentHealth} ");
             DeathCheck();
+            Console.ForegroundColor = ConsoleColor.White;
         }
-        
+        private void DeathCheck()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            if (_heroAttributes.CurrentHealth <= 0)
+            {
+                _isDead = true;
+                Console.WriteLine("You Died :(");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         public void EquipItem(Equipment item)
         {
             if (item == null)

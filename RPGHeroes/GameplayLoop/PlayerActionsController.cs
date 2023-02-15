@@ -96,7 +96,8 @@ namespace RPGHeroes.GameplayLoop
                 default:
                     throw new Exception("Selected action is not an option");
             }
-            PlayerActions();
+            if (!Player.Hero.IsDead) { PlayerActions(); }
+            Console.Clear();
         }
         public static void PlayerInventoryActions()
         {

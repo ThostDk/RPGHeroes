@@ -54,6 +54,7 @@ namespace RPGHeroes
         }
         public void DisplayWeapon(Weapon item)
         {
+            if(!Player.Hero.AllowedWeaponType.Contains(item.WeaponType) || Player.Hero.Level < item.LevelRequirement){ Console.ForegroundColor = ConsoleColor.Red; }
             Console.WriteLine("                                         |Weapon|                                         ");
             Console.WriteLine($"Weapon name.........: {item.Name}");
             Console.WriteLine($"Level Requirement...: {item.LevelRequirement}");
@@ -63,10 +64,11 @@ namespace RPGHeroes
             Console.WriteLine($"Weapon Strength.....: {item.Strength}");
             Console.WriteLine($"Weapon Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Weapon Intelligence.: {item.Intelligence}");
-
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public void DisplayArmor(Armor item)
         {
+            if (!Player.Hero.AllowedArmorType.Contains(item.ArmorType) || Player.Hero.Level < item.LevelRequirement) { Console.ForegroundColor = ConsoleColor.Red; }
             Console.WriteLine("                                         |Armor|                                          ");
             Console.WriteLine($"Armor name.........: {item.Name}");
             Console.WriteLine($"Level Requirement..: {item.LevelRequirement}");

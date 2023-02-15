@@ -35,16 +35,16 @@ namespace RPGHeroesTest
                 expectedWeaponTypes
             };
 
-            //Assert
+            //Act
             Mage testMage = new Mage("testMage");
             List<ArmorType> actualArmorTypes = testMage.AllowedArmorType;
             List<WeaponType> actualWeaponTypes = testMage.AllowedWeaponType;
 
             List<int> actualAttributes = new List<int>()
             {
-                testMage.HeroAttributes.Strength,
-                testMage.HeroAttributes.Dexterity,
-                testMage.HeroAttributes.Intelligence
+                testMage.HeroAttributes.TotalStrength,
+                testMage.HeroAttributes.TotalDexterity,
+                testMage.HeroAttributes.TotalIntelligence
             };
             object[] actual = new object[]
             {
@@ -55,7 +55,7 @@ namespace RPGHeroesTest
                 actualWeaponTypes
             };
 
-            //Act
+            //Assert
             Assert.Equal(expected, actual);
         }
         #endregion
@@ -90,16 +90,16 @@ namespace RPGHeroesTest
                 expectedWeaponTypes,
             };
 
-            //Assert
+            //Act
             Barbarian testBarbarian = new Barbarian("testBarbarian");
             List<ArmorType> actualArmorTypes = testBarbarian.AllowedArmorType;
             List<WeaponType> actualWeaponTypes = testBarbarian.AllowedWeaponType;
 
             List<int> actualAttributes = new List<int>()
             {
-                testBarbarian.HeroAttributes.Strength,
-                testBarbarian.HeroAttributes.Dexterity,
-                testBarbarian.HeroAttributes.Intelligence
+                testBarbarian.HeroAttributes.TotalStrength,
+                testBarbarian.HeroAttributes.TotalDexterity,
+                testBarbarian.HeroAttributes.TotalIntelligence
             };
             object[] actual = new object[]
             {
@@ -109,8 +109,7 @@ namespace RPGHeroesTest
                 actualArmorTypes,
                 actualWeaponTypes
             };
-
-            //Act
+            //Assert
             Assert.Equal(expected, actual);
         }
         #endregion
@@ -144,16 +143,16 @@ namespace RPGHeroesTest
                 expectedWeaponTypes
             };
 
-            //Assert
+            //Act
             Ranger testRanger = new Ranger("testRanger");
             List<ArmorType> actualArmorTypes = testRanger.AllowedArmorType;
             List<WeaponType> actualWeaponTypes = testRanger.AllowedWeaponType;
 
             List<int> actualAttributes = new List<int>()
             {
-                testRanger.HeroAttributes.Strength,
-                testRanger.HeroAttributes.Dexterity,
-                testRanger.HeroAttributes.Intelligence
+                testRanger.HeroAttributes.TotalStrength,
+                testRanger.HeroAttributes.TotalDexterity,
+                testRanger.HeroAttributes.TotalIntelligence
             };
             object[] actual = new object[]
             {
@@ -164,7 +163,7 @@ namespace RPGHeroesTest
                 actualWeaponTypes
             };
 
-            //Act
+            //Assert
             Assert.Equal(expected, actual);
         }
         #endregion
@@ -198,16 +197,16 @@ namespace RPGHeroesTest
                 expectedWeaponTypes
             };
 
-            //Assert
+            //Act
             Rogue testRogue = new Rogue("testRogue");
             List<ArmorType> actualArmorTypes = testRogue.AllowedArmorType;
             List<WeaponType> actualWeaponTypes = testRogue.AllowedWeaponType;
 
             List<int> actualAttributes = new List<int>()
             {
-                testRogue.HeroAttributes.Strength,
-                testRogue.HeroAttributes.Dexterity,
-                testRogue.HeroAttributes.Intelligence,
+                testRogue.HeroAttributes.TotalStrength,
+                testRogue.HeroAttributes.TotalDexterity,
+                testRogue.HeroAttributes.TotalIntelligence,
                 
             };
             object[] actual = new object[]
@@ -219,7 +218,7 @@ namespace RPGHeroesTest
                 actualWeaponTypes
             };
 
-            //Act
+            //Assert
             Assert.Equal(expected, actual);
         }
         #endregion
@@ -230,11 +229,12 @@ namespace RPGHeroesTest
             //Arrange
             Mage testMage = new Mage("testMage");
             int expectedLevel = 2;
-            //Assert
+
+            //Act
             testMage.LevelUp();
             int actualLevel = testMage.Level;
 
-            //Act
+            //Assert
             Assert.Equal(expectedLevel, actualLevel);
         }
         [Fact]
@@ -245,16 +245,16 @@ namespace RPGHeroesTest
             // strength|dexterity|intelligence
             List<int> expectedAttributes = new List<int>() { 2, 2, 13 };
 
-            //Assert
+            //Act
             testMage.LevelUp();
             List<int> actualAttributes = new List<int>()
             {
-                testMage.HeroAttributes.Strength,
-                testMage.HeroAttributes.Dexterity,
-                testMage.HeroAttributes.Intelligence,
+                testMage.HeroAttributes.TotalStrength,
+                testMage.HeroAttributes.TotalDexterity,
+                testMage.HeroAttributes.TotalIntelligence,
             };
             
-            //Act
+            //Assert
             Assert.Equal(expectedAttributes, actualAttributes);
         }
 
@@ -266,11 +266,11 @@ namespace RPGHeroesTest
             //Arrange
             Barbarian testBarbarian = new Barbarian("testBarbarian");
             int expectedLevel = 2;
-            //Assert
+            //Act
             testBarbarian.LevelUp();
             int actualLevel = testBarbarian.Level;
 
-            //Act
+            //Assert
             Assert.Equal(expectedLevel, actualLevel);
         }
         [Fact]
@@ -281,16 +281,16 @@ namespace RPGHeroesTest
             // strength|dexterity|intelligence
             List<int> expectedAttributes = new List<int>() { 8, 4, 2 };
 
-            //Assert
+            //Act
             testBarbarian.LevelUp();
             List<int> actualAttributes = new List<int>()
             {
-                testBarbarian.HeroAttributes.Strength,
-                testBarbarian.HeroAttributes.Dexterity,
-                testBarbarian.HeroAttributes.Intelligence,
+                testBarbarian.HeroAttributes.TotalStrength,
+                testBarbarian.HeroAttributes.TotalDexterity,
+                testBarbarian.HeroAttributes.TotalIntelligence,
             };
 
-            //Act
+            //Assert
             Assert.Equal(expectedAttributes, actualAttributes);
         }
 
@@ -302,11 +302,12 @@ namespace RPGHeroesTest
             //Arrange
             Ranger testRanger = new Ranger("testRanger");
             int expectedLevel = 2;
-            //Assert
+
+            //Act
             testRanger.LevelUp();
             int actualLevel = testRanger.Level;
 
-            //Act
+            //Assert
             Assert.Equal(expectedLevel, actualLevel);
         }
         [Fact]
@@ -317,16 +318,16 @@ namespace RPGHeroesTest
             // strength|dexterity|intelligence
             List<int> expectedAttributes = new List<int>() { 2, 12, 2 };
 
-            //Assert
+            //Act
             testRanger.LevelUp();
             List<int> actualAttributes = new List<int>()
             {
-                testRanger.HeroAttributes.Strength,
-                testRanger.HeroAttributes.Dexterity,
-                testRanger.HeroAttributes.Intelligence,
+                testRanger.HeroAttributes.TotalStrength,
+                testRanger.HeroAttributes.TotalDexterity,
+                testRanger.HeroAttributes.TotalIntelligence,
             };
 
-            //Act
+            //Assert
             Assert.Equal(expectedAttributes, actualAttributes);
         }
 
@@ -338,11 +339,12 @@ namespace RPGHeroesTest
             //Arrange
             Rogue testRogue = new Rogue("testRogue");
             int expectedLevel = 2;
-            //Assert
+            
+            //Act
             testRogue.LevelUp();
             int actualLevel = testRogue.Level;
 
-            //Act
+            //Assert
             Assert.Equal(expectedLevel, actualLevel);
         }
         [Fact]
@@ -353,16 +355,16 @@ namespace RPGHeroesTest
             // strength|dexterity|intelligence
             List<int> expectedAttributes = new List<int>() { 3, 10, 2 };
 
-            //Assert
+            //Act
             testRogue.LevelUp();
             List<int> actualAttributes = new List<int>()
             {
-                testRogue.HeroAttributes.Strength,
-                testRogue.HeroAttributes.Dexterity,
-                testRogue.HeroAttributes.Intelligence,
+                testRogue.HeroAttributes.TotalStrength,
+                testRogue.HeroAttributes.TotalDexterity,
+                testRogue.HeroAttributes.TotalIntelligence,
             };
 
-            //Act
+            //Assert
             Assert.Equal(expectedAttributes, actualAttributes);
         }
 
@@ -388,7 +390,7 @@ namespace RPGHeroesTest
 
             List<Equipment> expectedItemsInSlots = testItems;
             
-            //Assert
+            //Act
             foreach (Equipment item in testItems)
             {
                 testRogue.EquipItem(item);
@@ -405,7 +407,7 @@ namespace RPGHeroesTest
                 testRogue.GetWeaponEquipped[WeaponHand.offHand],
             };
             
-            //Act
+            //Assert
             Assert.Equivalent(expectedItemsInSlots, actualItemsInSlots);
         }
         [Fact]
@@ -416,9 +418,11 @@ namespace RPGHeroesTest
             Armor testItem = new Armor(ArmorSlot.helmet, ArmorType.leather, "test helmet", 2, 2, 3, 4, 5);
             Rogue testRogue = new Rogue("testRogue");
             Armor expectedOutcome = null;
-            //Assert
-            testRogue.EquipItem(testItem);
+            
             //Act
+            testRogue.EquipItem(testItem);
+            
+            //Assert
             Assert.Equal(expectedOutcome, testRogue.GetArmorEquipped[ArmorSlot.helmet]);
         }
         [Fact]
@@ -429,9 +433,28 @@ namespace RPGHeroesTest
             Armor testItem = new Armor(ArmorSlot.helmet, ArmorType.plate, "test helmet", 1, 2, 3, 4, 5);
             Rogue testRogue = new Rogue("testRogue");
             Armor expectedOutcome = null;
-            //Assert
-            testRogue.EquipItem(testItem);
+            
             //Act
+            testRogue.EquipItem(testItem);
+            
+            //Assert
+            Assert.Equal(expectedOutcome, testRogue.GetArmorEquipped[ArmorSlot.helmet]);
+        }
+        #endregion
+        #region AttackEnemy Test
+        public void AttackEnemy_AttackingEnemy_EnemyShouldLoseCalculatedDamageInHealth()
+        {
+            //Arrange
+            Enemy testEnemy = new Enemy("testEnemyTarget", 10, 0, 0, 0);
+            Mage testMage = new Mage("heroAttacker");
+            testMage.AttackEnemy(testEnemy);
+
+            //Act
+            
+            float expectedMinimum = testEnemy.MaxHealth - (testMage.HeroAttributes.Damage * 0.5f);
+            float expectedMaximum = testEnemy.MaxHealth - testMage.HeroAttributes.Damage * 1.5f);
+            //Assert
+            Assert.InRange(10-0.5)
             Assert.Equal(expectedOutcome, testRogue.GetArmorEquipped[ArmorSlot.helmet]);
         }
         #endregion

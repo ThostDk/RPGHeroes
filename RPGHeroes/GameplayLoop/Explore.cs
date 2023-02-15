@@ -38,10 +38,14 @@ namespace RPGHeroes.GameplayLoop
         }
         private static void FoundEnemy()
         {
-            Console.WriteLine("OH NO! a enemy was hiding in the corner!");
+            Console.WriteLine("OH NO! an enemy was hiding in the corner!");
             int enemyType = RandomNumbers.RandomNr.Next(0, GameContentSpawner.Instance.Enemies.Count-1);
+            
             Enemy enemy = GameContentSpawner.Instance.Enemies[enemyType];
             CombatController.StartCombat(Player.Hero, enemy);
+            // Reset the enemy;
+            enemy.IsDead = false;
+            enemy.CurrentHealth = enemy.MaxHealth;
         }
 
     }

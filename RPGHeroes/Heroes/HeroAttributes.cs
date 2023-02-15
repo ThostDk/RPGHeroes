@@ -11,9 +11,9 @@ namespace RPGHeroes.Heroes
         private int _baseStrength = 0;
         private int _baseDexterity = 0;
         private int _baseIntelligence = 0;
-        private int _strength = 0;
-        private int _dexterity = 0;
-        private int _intelligence = 0;
+        private int _totalStrength = 0;
+        private int _totalDexterity = 0;
+        private int _totalIntelligence = 0;
 
         private float _currentHealth = 1;
         private float _maxHealth = 1;
@@ -33,9 +33,9 @@ namespace RPGHeroes.Heroes
         public int BaseStrength { get => _baseStrength; set => _baseStrength = value; }
         public int BaseDexterity { get => _baseDexterity; set => _baseDexterity = value; }
         public int BaseIntelligence { get => _baseIntelligence; set => _baseIntelligence = value; }
-        public int Strength { get => _strength;}
-        public int Dexterity { get => _dexterity;}
-        public int Intelligence { get => _intelligence;}
+        public int TotalStrength { get => _totalStrength;}
+        public int TotalDexterity { get => _totalDexterity;}
+        public int TotalIntelligence { get => _totalIntelligence;}
         public float MaxHealth { get => _maxHealth;}
         public float CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
         public float CurrentMana { get => _currentMana; set => _currentMana = value; }
@@ -45,14 +45,14 @@ namespace RPGHeroes.Heroes
 
         public void AddStatsFromEquipment(Dictionary<ArmorSlot, Armor> armorEquipped, Dictionary<WeaponHand, Weapon> weaponEquipped)
         {
-            _strength = _baseStrength; _dexterity = _baseDexterity; _intelligence = _baseIntelligence; _defense = 0;  _damage = 1;
+            _totalStrength = _baseStrength; _totalDexterity = _baseDexterity; _totalIntelligence = _baseIntelligence; _defense = 0;  _damage = 1;
             foreach (Armor armor in armorEquipped.Values)
             {
                 if (armor != null)
                 {
-                    _strength += armor.Strength;
-                    _dexterity += armor.Dexterity;
-                    _intelligence += armor.Intelligence;
+                    _totalStrength += armor.Strength;
+                    _totalDexterity += armor.Dexterity;
+                    _totalIntelligence += armor.Intelligence;
                     _defense += armor.Defense;
                 }
 
@@ -61,17 +61,17 @@ namespace RPGHeroes.Heroes
             {
                 if (weapon != null)
                 {
-                    _strength += weapon.Strength;
-                    _dexterity += weapon.Dexterity;
-                    _intelligence += weapon.Intelligence;
+                    _totalStrength += weapon.Strength;
+                    _totalDexterity += weapon.Dexterity;
+                    _totalIntelligence += weapon.Intelligence;
                     _damage += weapon.Damage;
                 }
             }
-            _maxHealth = _strength * 20;
+            _maxHealth = _totalStrength * 20;
             _currentHealth = MaxHealth;
-            _maxMana = _intelligence * 10;
+            _maxMana = _totalIntelligence * 10;
             _currentMana = _maxMana;
-            _defense += _dexterity * 0.2f;
+            _defense += _totalDexterity * 0.2f;
         }
     }
 }

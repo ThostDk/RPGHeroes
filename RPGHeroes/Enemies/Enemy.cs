@@ -82,7 +82,7 @@ namespace RPGHeroes
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Congratulations you killed {_name}");
-            Console.WriteLine($"It dropped a item for you!");
+            Console.WriteLine($"It dropped an item for you!");
             Reward.GiveReward(Player.Hero.Inventory);
             Console.ForegroundColor = ConsoleColor.White;
         }

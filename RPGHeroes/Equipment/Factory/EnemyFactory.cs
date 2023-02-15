@@ -13,12 +13,8 @@ namespace RPGHeroes
         {// | ArmorSlot | ArmorType | Name | LevelReq | Defense | Intelligence | Strength | Dexterity |
             List<Enemy> enemies = new List<Enemy>()
             {
-                new Enemy("Grumpy Orc", 40, 0, 8, 12),
-                new Enemy("Your own shadow", 20, 0, 3, 11),
-                new Enemy("Giant Bat", 17, 0, 3, 9),
-                new Enemy("Troll", 50, 0, 5, 14),
-                new Enemy("Skeleton",20,0,1,10),
-                new Enemy("Rat",15,0,2,8),
+                new Enemy("Grumpy Orc", 1, 0, 0, 12),
+                
                 
             };
             return enemies;

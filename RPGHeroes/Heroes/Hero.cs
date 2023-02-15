@@ -200,9 +200,9 @@ namespace RPGHeroes
         {
             Console.WriteLine("*--------------------------------------------------*");
             Console.WriteLine($"{_heroName}'s stats & attributes are as follows:");
-            Console.WriteLine($"Strength:----|{_heroAttributes.Strength}");
-            Console.WriteLine($"Dexterity:---|{_heroAttributes.Dexterity}");
-            Console.WriteLine($"Intelligence:|{_heroAttributes.Intelligence}");
+            Console.WriteLine($"Strength:----|{_heroAttributes.TotalStrength}");
+            Console.WriteLine($"Dexterity:---|{_heroAttributes.TotalDexterity}");
+            Console.WriteLine($"Intelligence:|{_heroAttributes.TotalIntelligence}");
             Console.WriteLine($"Health:------|{_heroAttributes.MaxHealth}");
             Console.WriteLine($"Mana:--------|{_heroAttributes.CurrentMana}");
             Console.WriteLine($"Damage:------|{_heroAttributes.Damage}");

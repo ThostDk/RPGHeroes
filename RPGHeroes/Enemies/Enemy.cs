@@ -40,6 +40,10 @@ namespace RPGHeroes
         public Inventory Inventory { get => _inventory; }
         public bool IsDead { get => _isDead; set => _isDead = value; }
 
+        /// <summary>
+        /// Method for Attacking the player Hero
+        /// </summary>
+        /// <param name="target"> The hero the enemy will damage</param>
         public void AttackHero(Hero target)
         {
             if (!_isDead)
@@ -52,6 +56,10 @@ namespace RPGHeroes
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
+        /// <summary>
+        /// Method for applying damage taken to the Enemy
+        /// </summary>
+        /// <param name="damage">The amount of damage the enemy takes</param>
         public void TakeDamage(float damage)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -60,24 +68,35 @@ namespace RPGHeroes
             DeathCheck();
             Console.ForegroundColor = ConsoleColor.White;
         }
+        /// <summary>
+        /// Method for checking if enemy is dead and displaying in a positive green for the player if so.
+        /// </summary>
         private void DeathCheck()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
             if (_currentHealth <= 0)
             {
+            Console.ForegroundColor = ConsoleColor.Green;
                 _isDead = true;
                 Console.WriteLine($"{_name} Died!");
                 OnDeathReward();
-            }
             Console.ForegroundColor = ConsoleColor.White;
+            }
         }
-        public void GiveKillRewardFromInventory(Hero rewardTaker)
+        /// <summary>
+        /// Method for adding the enemy inventory content to the player hero
+        /// </summary>
+        /// <param name="rewardTaker">the hero target to give the reward to</param>
+        public void GiveRewardFromEnemyInventory(Hero rewardTaker)
         {
             for (int i = 0; i < _inventory.InventoryList.Count; i++)
             {
                 rewardTaker.Inventory.Add(_inventory.InventoryList[i]);
             }
         }
+
+        /// <summary>
+        /// Extension of the give reward method for console display
+        /// </summary>
         public void OnDeathReward()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

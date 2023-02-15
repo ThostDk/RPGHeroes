@@ -12,6 +12,7 @@ namespace RPGHeroes.GameplayLoop
         // ItemFactories
         ArmorFactory _armorFactory = new ArmorFactory();
         WeaponFactory _weaponFactory = new WeaponFactory();
+        EnemyFactory _enemyFactory= new EnemyFactory();
         List<Armor> _armors = new List<Armor>();
         List<Weapon> _weapons = new List<Weapon>();
         List<Enemy> _enemies = new List<Enemy>();
@@ -31,7 +32,7 @@ namespace RPGHeroes.GameplayLoop
             {
                 _weapons.Add((Weapon)item);
             }
-            _enemies = EnemyFactory.CreateEnemy();
+            _enemies = _enemyFactory.CreateEnemy();
         }
         public static GameContentSpawner Instance
         {

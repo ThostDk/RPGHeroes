@@ -9,6 +9,7 @@ namespace RPGHeroes
     {
         static void Main(string[] args)
         {
+            
             // GamePlay Loop Begins
             while (true)
             {

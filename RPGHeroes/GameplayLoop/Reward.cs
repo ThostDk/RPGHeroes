@@ -12,7 +12,7 @@ namespace RPGHeroes.GameplayLoop
         //Method that adds a random item from the game to the target inventory
         public static void GiveReward(Inventory rewardTakerInventory)
         {
-            Equipment rewardItem = null;
+            Equipment rewardItem = null!;
             if (RandomNumbers.RandomNr.Next(0, 2) == 1)
             {
                 rewardItem = GameContentSpawner.Instance.Armors[RandomNumbers.RandomNr.Next(0, GameContentSpawner.Instance.Armors.Count() - 1)];

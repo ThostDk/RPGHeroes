@@ -96,7 +96,12 @@ namespace RPGHeroes.GameplayLoop
                 default:
                     throw new Exception("Selected action is not an option");
             }
+            
             if (!Player.Hero.IsDead) { PlayerActions(); }
+            else
+            {
+                //Exit();
+            }
             Console.Clear();
         }
         public static void PlayerInventoryActions()
@@ -143,7 +148,7 @@ namespace RPGHeroes.GameplayLoop
                 Equipment? item = null;
                 Console.WriteLine("Which item would you like to Equip?");
                 Console.WriteLine("write the Index number you want to equip | write 'exit' to go back");
-                choice = Console.ReadLine();
+                choice = Console.ReadLine()!;
                 choice?.ToLower();
                 int index = -1;
                 if (choice == "exit")
@@ -152,7 +157,7 @@ namespace RPGHeroes.GameplayLoop
                 }
                 try
                 {
-                    index = Int32.Parse(choice);
+                    index = Int32.Parse(choice!);
                     item = Player.Hero.Inventory.EquipItemFromInventory(index);
                 }
                 catch (FormatException)

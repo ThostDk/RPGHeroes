@@ -14,9 +14,13 @@ namespace RPGHeroes
             while (true)
             {
                 RenderAscii.RenderBackground();
+                Console.ReadLine();
                 RenderAscii.RenderStartGameText();
                 Player.Hero = ClassSelection.SelectHero();
-                PlayerActionsController.PlayerActions();
+                if (!Player.Hero.IsDead)
+                {
+                    PlayerActionsController.PlayerActions();
+                }
             }
         }
 

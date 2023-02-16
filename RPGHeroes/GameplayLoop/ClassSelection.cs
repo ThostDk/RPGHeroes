@@ -21,10 +21,10 @@ namespace RPGHeroes
             string choice = HeroSelectionNavigation(0, HeroChoices);
             RenderAscii.RenderNameBook();
             Console.WriteLine("Tell us your Hero's Name: (Minimum 3 Characters)");
-            string? name = Console.ReadLine();
-            while (name.Length < 3)
+            string name = Console.ReadLine()!;
+            while (name!.Length < 3)
             {
-               name = Console.ReadLine();
+               name = Console.ReadLine()!;
             }
             switch (choice)
             {

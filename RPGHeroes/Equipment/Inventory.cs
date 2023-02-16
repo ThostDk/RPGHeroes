@@ -78,7 +78,7 @@ namespace RPGHeroes
             Console.WriteLine($"Armor Strength.....: {item.Strength}");
             Console.WriteLine($"Armor Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Armor Intelligence.: {item.Intelligence}");
-
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

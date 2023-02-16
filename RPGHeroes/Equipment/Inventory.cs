@@ -17,15 +17,26 @@ namespace RPGHeroes
         public Inventory() { }
 
         public void Add(Equipment item) { _inventoryList.Add(item); }
+        /// <summary>
+        /// Method for displaying local inventory list to the console 
+        /// </summary>
         public void DisplayInventory()
         {
             if (_inventoryList.Count <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("*----------------------------->  Your inventory is empty :(  <-----------------------------*");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             for (int i = 0; i < _inventoryList.Count; i++)
             {
-                Console.WriteLine($"*-----------------------------(|Inventory Slot Index({i})|)-----------------------------*");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"*-----------------------------(|Inventory Slot Index(");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{i}");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("|)-----------------------------*");
+                Console.ForegroundColor = ConsoleColor.White;
                 switch (_inventoryList[i])
                 {
                     case Weapon:
@@ -39,6 +50,11 @@ namespace RPGHeroes
                 }
             }
         }
+        /// <summary>
+        /// Method for equipping Index item from local inventory
+        /// </summary>
+        /// <param name="index">itemlist index</param>
+        /// <returns></returns>
         public Equipment EquipItemFromInventory(int index)
         {
             Equipment? outputItem = null;
@@ -52,7 +68,11 @@ namespace RPGHeroes
             }
             return outputItem;
         }
-        public void DisplayWeapon(Weapon item)
+        /// <summary>
+        /// Method for displaying a Weapon while also checking and showing as red if the player can't equip it 
+        /// </summary>
+        /// <param name="item"> Weapon for display</param>
+        private void DisplayWeapon(Weapon item)
         {
             if(!Player.Hero.AllowedWeaponType.Contains(item.WeaponType) || Player.Hero.Level < item.LevelRequirement){ Console.ForegroundColor = ConsoleColor.Red; }
             Console.WriteLine("                                         |Weapon|                                         ");
@@ -66,7 +86,11 @@ namespace RPGHeroes
             Console.WriteLine($"Weapon Intelligence.: {item.Intelligence}");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public void DisplayArmor(Armor item)
+        /// <summary>
+        /// Method for displaying a Armor while also checking and showing as red if the player can't equip it 
+        /// </summary>
+        /// <param name="item"> Armor for display</param>
+        private void DisplayArmor(Armor item)
         {
             if (!Player.Hero.AllowedArmorType.Contains(item.ArmorType) || Player.Hero.Level < item.LevelRequirement) { Console.ForegroundColor = ConsoleColor.Red; }
             Console.WriteLine("                                         |Armor|                                          ");

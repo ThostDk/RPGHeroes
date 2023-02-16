@@ -147,7 +147,7 @@ namespace RPGHeroes.GameplayLoop
             {
                 Equipment? item = null;
                 Console.WriteLine("Which item would you like to Equip?");
-                Console.WriteLine("write the Index number you want to equip | write 'exit' to go back");
+                Console.Write("write the Index number you want to equip"); Console.ForegroundColor = ConsoleColor.Red;  Console.WriteLine(" | write 'exit' to go back"); Console.ForegroundColor = ConsoleColor.White;
                 choice = Console.ReadLine()!;
                 choice?.ToLower();
                 int index = -1;

@@ -8,6 +8,10 @@ namespace RPGHeroes
 {
     public class WeaponFactory : EquipmentFactory
     {
+        /// <summary>
+        /// Method that returns a list of all the Weapons that should be created 
+        /// </summary>
+        /// <returns>returns a list of all the Weapons that should be created </returns>
         public override List<Equipment> CreateEquipment()
         {// | WeaponType | weaponHand | Name | LevelReq | Damage | Intelligence | Strength | Dexterity |
             List<Equipment> weapons = new List<Equipment>(){

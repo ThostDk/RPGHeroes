@@ -13,6 +13,5 @@ namespace RPGHeroes
         gloves,
         pants,
         boots,
-
     }
 }

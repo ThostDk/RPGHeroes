@@ -12,6 +12,13 @@ namespace RPGHeroes
 {
     public static class RenderAscii
     {
+        /// <summary>
+        /// Method for displaying all the menus in the game
+        /// </summary>
+        /// <param name="title">The Title in the top of the Console Menu</param>
+        /// <param name="playerActions">the list of string actions that should be displayed in the menu </param>
+        /// <param name="index">the index for the '--> selection' </param>
+        /// <param name="shouldClearConsole">should the menu clear the console before being run?</param>
         public static void RenderPlayerActionsMenu(string title, List<string> playerActions, int index, bool shouldClearConsole)
         {
             

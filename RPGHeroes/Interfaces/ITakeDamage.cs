@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGHeroes
+namespace RPGHeroes.Heroes
 {
-    public enum ArmorSlot
+    internal interface ITakeDamage
     {
-        helmet,
-        bodyArmor,
-        gloves,
-        pants,
-        boots,
+        public abstract void TakeDamage(float damage);
     }
 }

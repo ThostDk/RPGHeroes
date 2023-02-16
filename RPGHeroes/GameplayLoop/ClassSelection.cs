@@ -12,6 +12,11 @@ namespace RPGHeroes
 {
     public static class ClassSelection
     {
+        /// <summary>
+        /// Method for selecting the Players Hero Character
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ChosenHeroNotFoundException">custom exception for if the users selection is invalid</exception>
         public static Hero SelectHero()
         {
             RenderAscii.RenderBackground();
@@ -21,10 +26,10 @@ namespace RPGHeroes
             string choice = HeroSelectionNavigation(0, HeroChoices);
             RenderAscii.RenderNameBook();
             Console.WriteLine("Tell us your Hero's Name: (Minimum 3 Characters)");
-            string? name = Console.ReadLine();
-            while (name.Length < 3)
+            string name = Console.ReadLine()!;
+            while (name!.Length < 3)
             {
-               name = Console.ReadLine();
+               name = Console.ReadLine()!;
             }
             switch (choice)
             {
@@ -37,10 +42,17 @@ namespace RPGHeroes
                 case "rogue":
                     return new Rogue(name);
                 default:
-                    throw new ChosenHeroNotFoundException("The selected choice doesn't exist");
+                    throw new ChosenHeroNotFoundException("The selected Hero choice doesn't exist");
             }
 
         }
+        /// <summary>
+        /// Private Navigation Method for moving selection by reading user keystrokes and returning string of hero choice for SelectHero to read  
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="heroChoices"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private static string HeroSelectionNavigation(int index, List<string> heroChoices)
         {
             
@@ -74,6 +86,11 @@ namespace RPGHeroes
             }
             throw new Exception("How did you even get here?! anyways... you somehow pressed a key that neither activated any case or the default recursion call");
         }
+
+        /// <summary>
+        /// displays the selection menu and its '-> selection'  
+        /// </summary>
+        /// <param name="index"></param>
         private static void RenderCurrentClassOption(int index)
         {
             switch (index)

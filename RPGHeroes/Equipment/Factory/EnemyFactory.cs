@@ -9,6 +9,10 @@ namespace RPGHeroes
 {
     public class EnemyFactory
     {
+        /// <summary>
+        /// Method that returns a list of all the Enemies that should be created 
+        /// </summary>
+        /// <returns>returns a list of all the Enemies that should be created </returns>
         public List<Enemy> CreateEnemy()
         {// | Name | Health | Mana | Defense | Damage |
             List<Enemy> enemies = new List<Enemy>()

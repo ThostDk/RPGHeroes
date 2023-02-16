@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    public abstract class Hero
+    public abstract class Hero : ITakeDamage
     {
         private string _heroName;
         private bool _isDead = false;
@@ -25,18 +25,18 @@ namespace RPGHeroes
         // Armor
         private Dictionary<ArmorSlot, Armor> _armorEquipped = new Dictionary<ArmorSlot, Armor>()
         {
-            {ArmorSlot.helmet,null},
-            {ArmorSlot.bodyArmor,null},
-            {ArmorSlot.pants,null},
-            {ArmorSlot.gloves,null},
-            {ArmorSlot.boots,null},
+            {ArmorSlot.helmet,null!},
+            {ArmorSlot.bodyArmor,null!},
+            {ArmorSlot.pants,null!},
+            {ArmorSlot.gloves,null!},
+            {ArmorSlot.boots,null!},
         };
         // Weapons
         private Dictionary<WeaponHand, Weapon> _weaponEquipped = new Dictionary<WeaponHand, Weapon>()
         {
-            {WeaponHand.mainHand,null},
-            {WeaponHand.offHand,null},
-            {WeaponHand.both,null},
+            {WeaponHand.mainHand,null!},
+            {WeaponHand.offHand,null!},
+            {WeaponHand.both,null!},
         };
 
         public bool IsDead { get => _isDead; set => _isDead = value; }
@@ -64,7 +64,7 @@ namespace RPGHeroes
 
         }
 
-        public virtual void AttackEnemy(Enemy target)
+        public virtual void Attack(Enemy target)
         {
             if (!_isDead)
             {
@@ -169,16 +169,16 @@ namespace RPGHeroes
                 {
                     case WeaponHand.mainHand:
                         _weaponEquipped[WeaponHand.mainHand] = weapon;
-                        _weaponEquipped[WeaponHand.both] = null;
+                        _weaponEquipped[WeaponHand.both] = null!;
                         break;
                     case WeaponHand.offHand:
                         _weaponEquipped[WeaponHand.offHand] = weapon;
-                        _weaponEquipped[WeaponHand.both] = null;
+                        _weaponEquipped[WeaponHand.both] = null!;
                         break;
                     case WeaponHand.both:
                         _weaponEquipped[WeaponHand.both] = weapon;
-                        _weaponEquipped[WeaponHand.offHand] = null;
-                        _weaponEquipped[WeaponHand.mainHand] = null;
+                        _weaponEquipped[WeaponHand.offHand] = null!;
+                        _weaponEquipped[WeaponHand.mainHand] = null!;
                         break;
                     default:
                         break;
@@ -200,6 +200,7 @@ namespace RPGHeroes
         {
             Console.WriteLine("*--------------------------------------------------*");
             Console.WriteLine($"{_heroName}'s stats & attributes are as follows:");
+            Console.WriteLine($"Level:-------|{_level}");
             Console.WriteLine($"Strength:----|{_heroAttributes.TotalStrength}");
             Console.WriteLine($"Dexterity:---|{_heroAttributes.TotalDexterity}");
             Console.WriteLine($"Intelligence:|{_heroAttributes.TotalIntelligence}");

@@ -12,9 +12,9 @@ namespace RPGHeroes.Heroes
         {
             
         }
-        public override void AttackEnemy(Enemy target)
+        public override void Attack(Enemy target)
         {
-            base.AttackEnemy(target);
+            base.Attack(target);
         }
         public override void TakeDamage(float damage)
         {

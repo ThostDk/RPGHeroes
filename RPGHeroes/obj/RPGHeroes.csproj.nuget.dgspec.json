@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TOste1\\Documents\\backend\\AssignmentRpg\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj": {}
+    "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TOste1\\Documents\\backend\\AssignmentRpg\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj": {
+    "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TOste1\\Documents\\backend\\AssignmentRpg\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
+        "projectUniqueName": "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
         "projectName": "RPGHeroes",
-        "projectPath": "C:\\Users\\TOste1\\Documents\\backend\\AssignmentRpg\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
-        "packagesPath": "C:\\Users\\TOste1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TOste1\\Documents\\backend\\AssignmentRpg\\RPGHeroes\\RPGHeroes\\obj\\",
+        "projectPath": "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\RPGHeroes.csproj",
+        "packagesPath": "C:\\Users\\Thoost\\.nuget\\packages\\",
+        "outputPath": "C:\\xperis-code\\C#\\Assignment\\RPGHeroes\\RPGHeroes\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\TOste1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Thoost\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Work\\Trading\\NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -170,7 +170,6 @@ namespace RPGHeroes.GameplayLoop
                     if (item != null)
                     {
                         Player.Hero.EquipItem(item);
-                        item = null;
                     }
                 }
             }

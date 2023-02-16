@@ -14,7 +14,6 @@ namespace RPGHeroes
         protected int _intelligence = 0;
         protected int _damage = 0;
         protected int _defense = 0;
-        protected int _durability = 100;
         protected int _levelRequirement = 1;
         
         public string Name { get => _name;}
@@ -23,17 +22,10 @@ namespace RPGHeroes
         public int Intelligence { get => _intelligence;}
         public int Damage { get => _damage;}
         public int Defense { get => _defense;}
-        public int Durability { get => _durability; set => _durability = value; }
+       
         public int LevelRequirement { get => _levelRequirement; set => _levelRequirement = value; }
 
-        public Equipment()
-        {
-            
-        }
-
-        public bool IsBroken()
-        {
-           return _durability <= 0 ? true : false; 
-        }
+        
+        
     }
 }

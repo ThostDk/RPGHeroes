@@ -1,6 +1,7 @@
 using RPGHeroes;
 using RPGHeroes.Heroes;
 using Xunit.Sdk;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RPGHeroesTest
 {
@@ -442,13 +443,14 @@ namespace RPGHeroesTest
         }
         #endregion
         #region AttackEnemy Test
+        
         [Fact]
-        public void AttackEnemy_AttackingEnemy_EnemyShouldLoseCalculatedDamageInHealth()
+        public void MageAttackEnemy_AttackingEnemy_EnemyShouldLoseCalculatedDamageInHealth()
         {
             //Arrange
             Enemy testEnemy = new Enemy("testEnemyTarget", 10, 0, 0, 0);
             Mage testMage = new Mage("heroAttacker");
-            testMage.AttackEnemy(testEnemy);
+            testMage.Attack(testEnemy);
 
             //Act
             float expectedMinimum = testEnemy.MaxHealth - 0.5f;
@@ -459,12 +461,60 @@ namespace RPGHeroesTest
             
         }
         [Fact]
+        public void BarbarianAttackEnemy_AttackingEnemy_EnemyShouldLoseCalculatedDamageInHealth()
+        {
+            //Arrange
+            Enemy testEnemy = new Enemy("testEnemyTarget", 10, 0, 0, 0);
+            Barbarian testBarbarian = new Barbarian("heroAttacker");
+            testBarbarian.Attack(testEnemy);
+
+            //Act
+            float expectedMinimum = testEnemy.MaxHealth - 0.5f;
+            float expectedMaximum = testEnemy.MaxHealth - 1.5f;
+
+            //Assert
+            Assert.InRange(testEnemy.CurrentHealth, expectedMaximum, expectedMinimum);
+
+        }
+        [Fact]
+        public void RogueAttackEnemy_AttackingEnemy_EnemyShouldLoseCalculatedDamageInHealth()
+        {
+            //Arrange
+            Enemy testEnemy = new Enemy("testEnemyTarget", 10, 0, 0, 0);
+            Rogue testRogue = new Rogue("heroAttacker");
+            testRogue.Attack(testEnemy);
+
+            //Act
+            float expectedMinimum = testEnemy.MaxHealth - 0.5f;
+            float expectedMaximum = testEnemy.MaxHealth - 1.5f;
+
+            //Assert
+            Assert.InRange(testEnemy.CurrentHealth, expectedMaximum, expectedMinimum);
+
+        }
+        [Fact]
+        public void RangerAttackEnemy_AttackingEnemy_EnemyShouldLoseCalculatedDamageInHealth()
+        {
+            //Arrange
+            Enemy testEnemy = new Enemy("testEnemyTarget", 10, 0, 0, 0);
+            Ranger testRanger = new Ranger("heroAttacker");
+            testRanger.Attack(testEnemy);
+
+            //Act
+            float expectedMinimum = testEnemy.MaxHealth - 0.5f;
+            float expectedMaximum = testEnemy.MaxHealth - 1.5f;
+
+            //Assert
+            Assert.InRange(testEnemy.CurrentHealth, expectedMaximum, expectedMinimum);
+
+        }
+        [Fact]
         public void AttackEnemy_AttackingArmoredEnemy_EnemyHealthShouldRemainTheSame()
         {
             //Arrange
             Enemy testEnemy = new Enemy("testEnemyTarget", 10, 0, 2, 0);
             Mage testMage = new Mage("heroAttacker");
-            testMage.AttackEnemy(testEnemy);
+            testMage.Attack(testEnemy);
 
             //Act
             float expected = 10;
@@ -483,7 +533,7 @@ namespace RPGHeroesTest
             Enemy testEnemy = new Enemy("testEnemyAttacker", 10, 0, 0, 1);
             Mage testMage = new Mage("heroTarget");
             //Act
-            testEnemy.AttackHero(testMage);
+            testEnemy.Attack(testMage);
             float expectedMinimum = (testMage.HeroAttributes.MaxHealth) - (0.5f- testMage.HeroAttributes.Defense);
             float expectedMaximum = (testMage.HeroAttributes.MaxHealth) - (1.5f - testMage.HeroAttributes.Defense);
 
@@ -492,15 +542,64 @@ namespace RPGHeroesTest
 
         }
         [Fact]
-        public void TakeDamage_TakeDamageCall_HeroShouldLose1Health()
+        public void MageTakeDamage_TakeDamageCall_HeroShouldLose1Health()
         {
             //Arrange
-            Mage testMage = new Mage("heroTarget");
-            float expected = 19;
-            
+            int damage = 1;
+            Mage testMage = new Mage("heroMageTarget");
+            float expected = testMage.HeroAttributes.MaxHealth - damage;
+
             //Act
             testMage.TakeDamage(1);
             float actual = testMage.HeroAttributes.CurrentHealth;
+
+            //Assert
+            Assert.Equal(expected, actual);
+
+        }
+        [Fact]
+        public void BarbarianTakeDamage_TakeDamageCall_HeroShouldLose1Health()
+        {
+            //Arrange
+            float damage = 1;
+            Barbarian testBarbarian = new Barbarian("heroBarbarianTarget");
+            float expected = testBarbarian.HeroAttributes.MaxHealth - damage;
+
+            //Act
+            testBarbarian.TakeDamage(1);
+            float actual = testBarbarian.HeroAttributes.CurrentHealth;
+
+            //Assert
+            Assert.Equal(expected, actual);
+
+        }
+        [Fact]
+        public void RogueTakeDamage_TakeDamageCall_HeroShouldLose1Health()
+        {
+            //Arrange
+            int damage = 1;
+            Rogue testRogue = new Rogue("heroRogueTarget");
+            float expected = testRogue.HeroAttributes.MaxHealth - damage;
+
+            //Act
+            testRogue.TakeDamage(1);
+            float actual = testRogue.HeroAttributes.CurrentHealth;
+
+            //Assert
+            Assert.Equal(expected, actual);
+
+        }
+        [Fact]
+        public void RangerTakeDamage_TakeDamageCall_HeroShouldLose1Health()
+        {
+            //Arrange
+            int damage = 1;
+            Ranger testRanger = new Ranger("heroRangerTarget");
+            float expected = testRanger.HeroAttributes.MaxHealth - damage;
+
+            //Act
+            testRanger.TakeDamage(1);
+            float actual = testRanger.HeroAttributes.CurrentHealth;
 
             //Assert
             Assert.Equal(expected, actual);

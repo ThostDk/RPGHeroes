@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace RPGHeroesTest
 {
@@ -52,7 +53,7 @@ namespace RPGHeroesTest
             //Arrange
             Enemy testEnemy = new Enemy("testEnemyAttacker", 10, 0, 0, 10);
             Mage testMage = new Mage("heroDefender");
-            testEnemy.AttackHero(testMage);
+            testEnemy.Attack(testMage);
 
             //Act
             float expectedMinimum = 4.8f;
@@ -62,16 +63,60 @@ namespace RPGHeroesTest
             Assert.InRange(actual, expectedMinimum, expectedMaximum);
 
         }
-        //[fact]
-        //public void takedamage_takedamagefromheroattack_enemyshouldlosecalculateddamage()
-        //{
-        //    //arrange
-        //    enemy testenemy = new enemy("testenemyattacker", 10, 0, 0, 1);
-        //    //act
-        //    testenemy.takedamage(5);
-        //    //assert
-        //    assert.equal();
+        [Fact]
+        public void takedamage_takedamagefromheroattack_enemyshouldlosecalculateddamage()
+        {
+            //arrange
+            Enemy testenemy = new Enemy("testenemyHurt", 10, 0, 0, 1);
+            float expected = 5;
+            //act
+            testenemy.TakeDamage(5);
+            float actual = testenemy.MaxHealth - testenemy.CurrentHealth;
+            //assert
+            Assert.Equal(expected, actual);
 
-        //}
+        }
+
+        [Fact]
+        public void GiveRewardFromInventory_GivingRewardFromInventory_PlayerHeroGetsTheReward()
+        {
+            //arrange
+            Mage testMage = new Mage("testMageTaker");
+            Enemy testenemy = new Enemy("testenemyGiver", 1, 1, 1, 1);
+            Weapon testWeapon = new Weapon(WeaponType.staff, WeaponHand.both, "unique test staff", 1, 2, 3, 4, 5);
+            Armor testArmor = new Armor(ArmorSlot.helmet, ArmorType.plate, "unique test plate helmet", 1, 2, 3, 4, 5);
+            List<Equipment> expected = new List<Equipment>() { testWeapon, testArmor };
+            testenemy.Inventory.Add(testWeapon);
+            testenemy.Inventory.Add(testArmor);
+            
+            //act
+            testenemy.GiveRewardFromEnemyInventory(testMage);
+
+            List<Equipment> actual = testMage.HeroInventoryList;
+            
+            //assert
+            Assert.Equivalent(expected, actual);
+
+        }
+        [Fact]
+        public void OnDeathReward_GivingRandomReward_PlayerHeroGetsARandomItem()
+        {
+            //arrange
+            Mage testMage = new Mage("testMageTaker");
+            Enemy testenemy = new Enemy("testenemyGiver", 1, 1, 1, 1);
+            Weapon testWeapon = new Weapon(WeaponType.staff, WeaponHand.both, "unique test staff", 1, 2, 3, 4, 5);
+            Armor testArmor = new Armor(ArmorSlot.helmet, ArmorType.plate, "unique test plate helmet", 1, 2, 3, 4, 5);
+            List<Equipment> expected = new List<Equipment>() { testWeapon, testArmor };
+            testenemy.Inventory.Add(testWeapon);
+            testenemy.Inventory.Add(testArmor);
+
+            //act
+            Reward.GiveReward(testMage.Inventory);
+            bool actual = testMage.HeroInventoryList.Count > 0;
+
+            //assert
+            Assert.True(actual);
+
+        }
     }
 }

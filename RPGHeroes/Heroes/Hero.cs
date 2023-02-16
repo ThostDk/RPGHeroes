@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    public abstract class Hero
+    public abstract class Hero : ITakeDamage
     {
         private string _heroName;
         private bool _isDead = false;
@@ -64,7 +64,7 @@ namespace RPGHeroes
 
         }
 
-        public virtual void AttackEnemy(Enemy target)
+        public virtual void Attack(Enemy target)
         {
             if (!_isDead)
             {

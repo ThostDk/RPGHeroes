@@ -33,9 +33,9 @@ namespace RPGHeroes.Heroes
             {
                 Console.WriteLine($"Round: {round}");
                 Console.WriteLine("Player's Turn:");
-                hero.AttackEnemy(enemy);
+                hero.Attack(enemy);
                 Console.WriteLine("Enemy's Turn:");
-                enemy.AttackHero(hero);
+                enemy.Attack(hero);
                 Console.WriteLine(" -> press any key to continue <- ");
                 Console.ReadLine();
             }

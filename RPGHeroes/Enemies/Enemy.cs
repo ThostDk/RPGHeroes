@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RPGHeroes
 {
-    public class Enemy
+    public class Enemy : ITakeDamage
     {
         private string _name;
         private float _currentHealth = 1;
@@ -44,7 +44,7 @@ namespace RPGHeroes
         /// Method for Attacking the player Hero
         /// </summary>
         /// <param name="target"> The hero the enemy will damage</param>
-        public void AttackHero(Hero target)
+        public void Attack(Hero target)
         {
             if (!_isDead)
             {

@@ -34,10 +34,16 @@ namespace RPGHeroes
                 Console.WriteLine($"Round: {round}");
                 Console.WriteLine("Player's Turn:");
                 hero.Attack(enemy);
+                if (enemy.IsDead){break;}
                 Console.WriteLine("Enemy's Turn:");
                 enemy.Attack(hero);
                 Console.WriteLine(" -> press any key to continue <- ");
                 Console.ReadLine();
+            }
+            if (!hero.IsDead && enemy.IsDead)
+            {
+                hero.LevelUp();
+                Console.WriteLine($"You won! Your level is now: {Player.Hero.Level}");
             }
         }
     }

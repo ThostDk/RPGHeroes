@@ -10,7 +10,6 @@ namespace RPGHeroes
         {
             Console.WriteLine("You Search the current room");
             int randomSearchResult = RandomNumbers.RandomNr.Next(0, 2);
-            Console.WriteLine("number: " +randomSearchResult);
             switch (randomSearchResult)
             {
                 case 0:

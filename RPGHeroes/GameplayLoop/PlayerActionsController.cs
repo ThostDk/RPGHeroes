@@ -118,8 +118,6 @@ namespace RPGHeroes
                     Console.Clear();
                     
                     CaseEquipItemFromInventory();
-                    Console.WriteLine(" -> press any key to go back <- ");
-                    Console.ReadLine();
                     break;
                 case "exitInventory":
                     Console.Clear();

@@ -1,11 +1,4 @@
-﻿using RPGHeroes.GameplayLoop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
+﻿
 namespace RPGHeroes
 {
     public class Inventory
@@ -28,25 +21,28 @@ namespace RPGHeroes
                 Console.WriteLine("*----------------------------->  Your inventory is empty :(  <-----------------------------*");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            for (int i = 0; i < _inventoryList.Count; i++)
+            else
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write($"*-----------------------------(|Inventory Slot Index(");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"{i}");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("|)-----------------------------*");
-                Console.ForegroundColor = ConsoleColor.White;
-                switch (_inventoryList[i])
+                for (int i = 0; i < _inventoryList.Count; i++)
                 {
-                    case Weapon:
-                        DisplayWeapon((Weapon)_inventoryList[i]);
-                        break;
-                    case Armor:
-                        DisplayArmor((Armor)_inventoryList[i]);
-                        break;
-                    default:
-                        break;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"*-----------------------------(|Inventory Slot Index(");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write($"{i}");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("|)-----------------------------*");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    switch (_inventoryList[i])
+                    {
+                        case Weapon:
+                            DisplayWeapon((Weapon)_inventoryList[i]);
+                            break;
+                        case Armor:
+                            DisplayArmor((Armor)_inventoryList[i]);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
@@ -75,6 +71,10 @@ namespace RPGHeroes
         private void DisplayWeapon(Weapon item)
         {
             if(!Player.Hero.AllowedWeaponType.Contains(item.WeaponType) || Player.Hero.Level < item.LevelRequirement){ Console.ForegroundColor = ConsoleColor.Red; }
+            if (Player.Hero.GetWeaponEquipped[item.WeaponHand] == item)
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+            }
             Console.WriteLine("                                         |Weapon|                                         ");
             Console.WriteLine($"Weapon name.........: {item.Name}");
             Console.WriteLine($"Level Requirement...: {item.LevelRequirement}");
@@ -85,6 +85,7 @@ namespace RPGHeroes
             Console.WriteLine($"Weapon Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Weapon Intelligence.: {item.Intelligence}");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
         }
         /// <summary>
         /// Method for displaying a Armor while also checking and showing as red if the player can't equip it 
@@ -93,6 +94,10 @@ namespace RPGHeroes
         private void DisplayArmor(Armor item)
         {
             if (!Player.Hero.AllowedArmorType.Contains(item.ArmorType) || Player.Hero.Level < item.LevelRequirement) { Console.ForegroundColor = ConsoleColor.Red; }
+            if (Player.Hero.GetArmorEquipped[item.ArmorSlot] == item)
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+            }
             Console.WriteLine("                                         |Armor|                                          ");
             Console.WriteLine($"Armor name.........: {item.Name}");
             Console.WriteLine($"Level Requirement..: {item.LevelRequirement}");
@@ -103,6 +108,7 @@ namespace RPGHeroes
             Console.WriteLine($"Armor Dexterity....: {item.Dexterity}");
             Console.WriteLine($"Armor Intelligence.: {item.Intelligence}");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
         }
     }
 }

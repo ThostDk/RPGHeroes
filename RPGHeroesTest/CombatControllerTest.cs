@@ -1,5 +1,4 @@
 ﻿using RPGHeroes;
-using RPGHeroes.Heroes;
 using Xunit.Sdk;
 namespace RPGHeroesTest
 {

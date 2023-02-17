@@ -1,13 +1,4 @@
-﻿using RPGHeroes.Exceptions;
-using RPGHeroes.GameplayLoop;
-using RPGHeroes.Heroes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace RPGHeroes
 {
     public abstract class Hero : ITakeDamage
@@ -97,7 +88,7 @@ namespace RPGHeroes
         {
             if (item == null)
             {
-                throw new ArgumentNullException("item is null: ", nameof(item));
+                throw new EquipItemItemNotFoundException("item is null: ", nameof(item));
             }
             else if (item.LevelRequirement > _level)
             {

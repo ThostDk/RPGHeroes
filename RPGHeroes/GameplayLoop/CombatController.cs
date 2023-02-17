@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RPGHeroes.Heroes
+﻿
+namespace RPGHeroes
 {
+
     public static class CombatController
     {
         /// <summary>
@@ -19,10 +15,10 @@ namespace RPGHeroes.Heroes
             double output = RandomNumbers.RandomNr.NextDouble() * ((attackerDamage * 1.5) - (attackerDamage * 0.5)) + (attackerDamage * 0.5);
             output -= defenderDefense;
             output = (float)Math.Round(output, 2);
-           return output < 0 ? 0f : (float)output;
+            return output < 0 ? 0f : (float)output;
         }
-        
-        
+
+
         /// <summary>
         /// Method for running combat gameloop between the player and a enemy
         /// </summary>

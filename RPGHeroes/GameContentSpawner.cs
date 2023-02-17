@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RPGHeroes.GameplayLoop
+﻿
+namespace RPGHeroes
 {
     //Singleton for singular global access to game content
     public sealed class GameContentSpawner

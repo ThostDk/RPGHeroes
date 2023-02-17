@@ -1,7 +1,5 @@
 using RPGHeroes;
-using RPGHeroes.Heroes;
 using Xunit.Sdk;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RPGHeroesTest
 {
@@ -373,6 +371,18 @@ namespace RPGHeroesTest
         #region EquipItemFromInventory_Test
         //Testing the Hero Equipping logic using the Method called EquipItem
         //which then calls its sub methods for equipping weapon/armor types
+
+        [Fact]
+        public void EquipItem_EquippingNull_ShouldThrowEquipItemItemNotFoundException()
+        {
+            //Arrange
+            Armor testItem = null;
+            Mage testMage = new Mage("testMage");
+            //Act
+            //Assert
+            Assert.Throws<EquipItemItemNotFoundException>(() => testMage.EquipItem(testItem));
+        }
+
         [Fact]
         public void EquipItem_EquippingListOfItems_ItemsEndsInCharacterSlots()
         {

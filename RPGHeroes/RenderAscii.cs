@@ -1,12 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿
 
 namespace RPGHeroes
 {
@@ -21,7 +13,7 @@ namespace RPGHeroes
         /// <param name="shouldClearConsole">should the menu clear the console before being run?</param>
         public static void RenderPlayerActionsMenu(string title, List<string> playerActions, int index, bool shouldClearConsole)
         {
-            
+
             if (shouldClearConsole)
             {
                 Console.Clear();
@@ -63,7 +55,7 @@ namespace RPGHeroes
         }
         public static void RenderChooseClass()
         {
-            Console.ForegroundColor= ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" ¤============================================================================================================================¤ ");
             Console.WriteLine("{|##########################################||       Lets choose a class         ||###########################################|}");
             Console.WriteLine("{|##########################################|| -> Press any key to continue <-   ||###########################################|}");
@@ -92,7 +84,7 @@ namespace RPGHeroes
                 ("                                        \r\n     .                                  \r\n    # (%%                               \r\n      @%@%                              \r\n       #&@#                             \r\n       @@@@*             &&(            \r\n       @@&%            @%&%%#%          \r\n         @&@          %#&\\#%(%@         \r\n          @&@          @#(#%@@@         \r\n           @&%@      %&%%&@@&@%         \r\n             %&.   &&%%(\\##%(#(%%%@*    \r\n              .%   @@&%,**#&@%@@#&#     \r\n               #&@@@%#%%#%##%&@%%@(     \r\n                %&@@@@&@@@@@@@@%&%,     \r\n                ##@@  ##%##@@@%#%@      \r\n                   &&@%%@&&@@#%@@       \r\n                    &@@@&@&%%%@&,       \r\n                   .&%&@&@&&&@@@&%      \r\n                  %@&@&(##%@@@@@@%&     \r\n                  &@(#%@@@@@@@@@&@@     \r\n                 @(#%@@@&&@@@@@@%%@     \r\n                 ((#%@@@&&&@@@@@@%@\\    \r\n                 (#%@@@@%&&&@@@#%%@&    \r\n                 (#&@@@@&&&&&@@#&%@     \r\n                 #&@@   &&&&@&@@@&(     \r\n                %#&&@@    %   &%@@&     \r\n                #&&@@         \\%#@@%    \r\n                &&@@,          @@%@     \r\n               .@@@            ,@@&     \r\n               #@@&             &&%%    \r\n              (&&@.             &%% ,   \r\n           %&%&@@@*             %%%%    ");
 
         }
-        
+
         public static void RenderRanger()
         {
             Console.Clear();
@@ -113,6 +105,6 @@ namespace RPGHeroes
         }
 
         #endregion
-        
+
     }
 }

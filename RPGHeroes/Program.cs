@@ -1,8 +1,4 @@
-﻿using RPGHeroes.GameplayLoop;
-using RPGHeroes.Heroes;
-using System.Security.Cryptography.X509Certificates;
-
-
+﻿
 namespace RPGHeroes
 {
     internal class Program
@@ -15,7 +11,7 @@ namespace RPGHeroes
             {
                 RenderAscii.RenderBackground();
                 RenderAscii.RenderStartGameText();
-                Player.Hero = ClassSelection.SelectHero();
+                Player.AddHero(ClassSelection.SelectHero());
                 if (!Player.Hero.IsDead)
                 {
                     PlayerActionsController.PlayerActions();

@@ -1,14 +1,5 @@
-﻿using RPGHeroes.Exceptions;
-using RPGHeroes.Heroes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace RPGHeroes.GameplayLoop
+﻿
+namespace RPGHeroes
 {
     public static class PlayerActionsController
     {
@@ -45,11 +36,11 @@ namespace RPGHeroes.GameplayLoop
                 case "inventory":
                     Console.Clear();
                     PlayerInventoryActions();
-                    Player.Hero.Inventory.DisplayInventory();
                     break;
                 case "characterStats":
                     Console.Clear();
                     Player.Hero.DisplayStats();
+                    Player.Hero.DisplayItems();
                     Console.WriteLine(" -> press any key to go back <- ");
                     Console.ReadLine();
                     break;
@@ -106,9 +97,9 @@ namespace RPGHeroes.GameplayLoop
         }
         public static void PlayerInventoryActions()
         {
+            bool exit = false;
             List<string> playerActions = new List<string>() { "displayInventory", "displayEquipment", "equipItem", "exitInventory" };
             string choice = PlayerActionNavigation(0, playerActions, "Inventory Menu");
-
             switch (choice)
             {
                 case "displayInventory":
@@ -125,26 +116,31 @@ namespace RPGHeroes.GameplayLoop
                     break;
                 case "equipItem":
                     Console.Clear();
-                    Player.Hero.Inventory.DisplayInventory();
+                    
                     CaseEquipItemFromInventory();
                     Console.WriteLine(" -> press any key to go back <- ");
                     Console.ReadLine();
                     break;
                 case "exitInventory":
                     Console.Clear();
-                    PlayerActions();
+                    exit = true;
                     break;
                 default:
                     throw new Exception("Selected action is not an option");
             }
-
-            PlayerInventoryActions();
+            
+            if (!exit)
+            {
+                PlayerInventoryActions();
+            }
         }
         private static void CaseEquipItemFromInventory()
         {
             string choice = "";
             while (choice != "exit")
             {
+                Console.Clear();
+                Player.Hero.Inventory.DisplayInventory();
                 Equipment? item = null;
                 Console.WriteLine("Which item would you like to Equip?");
                 Console.Write("write the Index number you want to equip"); Console.ForegroundColor = ConsoleColor.Red;  Console.WriteLine(" | write 'exit' to go back"); Console.ForegroundColor = ConsoleColor.White;

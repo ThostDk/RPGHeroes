@@ -20,17 +20,18 @@ When choosing hero you are presented with 4 options: Mage, Ranger, Rogue, Barbar
 ______________________________________________________________
 The classes have different starting stat amounts:
 ---------------------------------------------------------------
-Mage starts with:   |strength: 1|Dexterity: 1|Intelligence: 8|
-Each Level Increase:|strength:+1|Dexterity:+1|Intelligence:+5|
+Mage starts with:     |strength: 1|Dexterity: 1|Intelligence: 8|
+Each Level Increase:  |strength:+1|Dexterity:+1|Intelligence:+5|
 ---------------------------------------------------------------
-Ranger starts with: |strength: 1|Dexterity: 7|Intelligence: 1|
-Each Level Increase:|strength:+1|Dexterity:+5|Intelligence:+1|
+Ranger starts with:   |strength: 1|Dexterity: 7|Intelligence: 1|
+Each Level Increase:  |strength:+1|Dexterity:+5|Intelligence:+1|
 ---------------------------------------------------------------
-Rogue starts with:  |strength: 2|Dexterity: 6|Intelligence: 1|
-Each Level Increase:|strength:+1|Dexterity:+4|Intelligence:+1|
+Rogue starts with:    |strength: 2|Dexterity: 6|Intelligence: 1|
+Each Level Increase:  |strength:+1|Dexterity:+4|Intelligence:+1|
 ---------------------------------------------------------------
-Barbarian starts:   |strength: 5|Dexterity: 2|Intelligence: 1|
-Each Level Increase:|strength:+3|Dexterity:+2|Intelligence:+1|
+Barbarian starts with:|strength: 5|Dexterity: 2|Intelligence: 1|
+Each Level Increase:  |strength:+3|Dexterity:+2|Intelligence:+1|
+---------------------------------------------------------------
 ______________________________________________________________
 
 ##

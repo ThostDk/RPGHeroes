@@ -34,12 +34,32 @@ Each Level Increase:  |strength:+3|Dexterity:+2|Intelligence:+1|
 ---------------------------------------------------------------
 ______________________________________________________________
 
-## Gameplay Loop
+## Gameplay Loop: Option Menu
 Now that you have chosen a Hero, you'll be able to play the game. 
 You are presented with a menu with following options:
-![alt text](https://github.com/ThostDk/RPGHeroes/blob/main/Images/RPGHeroesUML.png?raw=true)
-## Basic representation of the UML setup
-![alt text](https://github.com/ThostDk/RPGHeroes/blob/main/Menu1.png?raw=true)
+![Menu1](https://user-images.githubusercontent.com/44801529/219691135-1272011a-6fc2-4e5e-ba9b-2c13279a7e3c.png)
 
+- Inventory: Opens a second menu for inventory options
+Here you can view your inventory aswell as equip different items which will affect your hero's attributes and stats. 
+Note: you can only equip 1 item pr. item slot (helmet, body armor, gloves, pants, boots, main hand, off hand)
+- CharacterStats lets you see your hero's stats and equipped equipment
+- explore makes you search the room for treasure. 
+its 50/50 wether you find a item or engage in a combat encounter with a random enemy
 
+- test options are for easily trying out the games features. 
+level up increases your level and attributes so you can better fight enemies and equip new items
 
+- exit game prompts you with a y/n option for exiting the console application
+
+## Gameplay Loop: Inventory Menu
+![Menu2](https://user-images.githubusercontent.com/44801529/219691558-e4c3b4b7-c392-4e69-a790-dd7785f8cfe9.png)
+- Display inventory writes out all your owned items for you to see. Usable items are shown in white / Unusable items in red, Equipped items are shown with green  background.
+-Display equipment lets you see your character equipment slots
+- equipItem Calls Display Inventory and lets your equip Index item from the inventory if it meets the level and item type requirements
+- exit inventory takes you back to Option Menu
+
+## Combat 
+![Combat](https://user-images.githubusercontent.com/44801529/219695507-90c57386-f315-426c-acb2-c9cabf4e131a.png)
+- Combat sets you up against a random enemy where you will fight it automatically in a turn based combat.
+- If you beat the enemy, your hero will be granted a random reward as well as a level
+- If you die, you'll be returned to the Character selection menu

@@ -34,4 +34,10 @@ Each Level Increase:  |strength:+3|Dexterity:+2|Intelligence:+1|
 ---------------------------------------------------------------
 ______________________________________________________________
 
-##
+## Gameplay Loop
+Now that you have chosen a Hero, you'll be able to play the game. 
+You are presented with a menu with following options:
+
+
+
+

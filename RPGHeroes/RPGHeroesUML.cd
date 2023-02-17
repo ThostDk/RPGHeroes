@@ -85,5 +85,33 @@
       <FileName>Equipment\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Enum Name="RPGHeroes.ArmorSlot" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAEAEAAAABAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Equipment\Enum\ArmorSlot.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RPGHeroes.ArmorType" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAgAAAAAAACAAAAAAAAAE=</HashCode>
+      <FileName>Equipment\Enum\ArmorType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RPGHeroes.WeaponHand" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equipment\Enum\WeaponHand.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RPGHeroes.WeaponType" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAkIgAAAAAAAAAAAAQAAAAAIAg=</HashCode>
+      <FileName>Equipment\Enum\WeaponType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

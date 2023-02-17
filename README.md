@@ -37,7 +37,7 @@ ______________________________________________________________
 ## Gameplay Loop
 Now that you have chosen a Hero, you'll be able to play the game. 
 You are presented with a menu with following options:
-
+![alt text](https://github.com/ThostDk/RPGHeroes/blob/main/RPGHeroesUML.png?raw=true)
 
 
 

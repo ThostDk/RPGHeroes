@@ -1,10 +1,10 @@
-# Bacground
+# Background
 RPGHeroes is an assignment from the Accelerated Learning course in Fullstack .Net developer (Noroff). The RPGHeroes .NET Console application utilizes C# 
 Objectoriented programming with Inheritance and Instantiating Gameobjects along with Design patterns such as Factory and SingleTon to Reach its goal. 
 
 # Testing
 The Code has been unit tested along the development process to ensure methods run as expected and exceptions are thrown whenever something unexpected might somehow 
-still happen.
+still happen. Each Method has been run through various scenarios with different inputs  to see if they act as expected during Assert. 
 
 # Description
 The Concole Application is a game where you can choose a hero, give it a name, equip armors and weapons that increases your stats. You can then go out and 
